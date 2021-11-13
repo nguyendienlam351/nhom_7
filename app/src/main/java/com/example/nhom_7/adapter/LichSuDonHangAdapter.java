@@ -65,6 +65,18 @@ public class LichSuDonHangAdapter extends RecyclerView.Adapter<LichSuDonHangAdap
                 delegation.getHuyDonHang(lichSuDH);
             }
         });
+        if(!lichSuDH.getTrangThai().equals("Xác nhận")){
+            holder.btnDaNhan.setVisibility(View.GONE);
+        }
+        else {
+            holder.btnDaNhan.setVisibility(View.VISIBLE);
+        }
+        if(lichSuDH.getTrangThai().equals("Huỷ")||lichSuDH.getTrangThai().equals("Đã nhận")){
+            holder.btnHuy.setVisibility(View.GONE);
+        }
+        else {
+            holder.btnHuy.setVisibility(View.VISIBLE);
+        }
     }
     @Override
     public int getItemViewType(int position) {

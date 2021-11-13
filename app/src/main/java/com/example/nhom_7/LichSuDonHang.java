@@ -33,7 +33,7 @@ public class LichSuDonHang extends AppCompatActivity {
     }
         private void list(){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("LichSuDonHang");
-        for (int i=1;i<5;i++){
+        for (int i=1;i<6;i++){
             String maDH= mDatabase.push().getKey();
             LichSuDH hoaDon = new LichSuDH();
             hoaDon.setMaDH(maDH);
@@ -89,7 +89,7 @@ public class LichSuDonHang extends AppCompatActivity {
             @Override
             public void getXacNhanDonHang(LichSuDH lichSuDH) {
                 database=FirebaseDatabase.getInstance().getReference("LichSuDonHang");
-                String trangThai = "Xác nhận";
+                String trangThai = "Đã nhận";
                 lichSuDH.setTrangThai(trangThai);
                 database.child(String.valueOf(lichSuDH.getMaDH())).updateChildren(lichSuDH.toMap());
             }
