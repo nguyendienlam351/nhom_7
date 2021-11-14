@@ -9,6 +9,16 @@ public class LichSuDH {
     String TrangThai;
     int Tong;
 
+    KhachHang khachHang ;
+
+    public KhachHang getKhachHang() {
+        return khachHang;
+    }
+
+    public void setKhachHang(KhachHang khachHang) {
+        this.khachHang = khachHang;
+    }
+
     public LichSuDH(){};
 
     public String getMaDH() {

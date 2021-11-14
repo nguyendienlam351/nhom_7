@@ -1,5 +1,6 @@
 package com.example.nhom_7;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nhom_7.adapter.LichSuDonHangAdapter;
+import com.example.nhom_7.adapter.LichSuDonHangAdminAdapter;
 import com.example.nhom_7.model.KhachHang;
 import com.example.nhom_7.model.LichSuDH;
 import com.google.firebase.database.ChildEventListener;
@@ -19,31 +21,31 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class LichSuDonHang extends AppCompatActivity {
+public class LichSuDonHangAdmin extends AppCompatActivity {
     RecyclerView lvLichSuDH;
     ArrayList<LichSuDH> data = new ArrayList<LichSuDH>();
-    LichSuDonHangAdapter myRecyclerViewAdapter;
+    LichSuDonHangAdminAdapter myRecyclerViewAdapter;
     DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lich_su_don_hang);
+        setContentView(R.layout.activity_lich_su_don_hang_admin);
         setConTrol();
         setEvent();
         //list();
     }
-        private void list(){
+    private void list(){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("LichSuDonHang");
         for (int i=1;i<6;i++){
-            //KhachHang khachHang = new KhachHang();
-            //khachHang.setHoTen("sđs");
+            KhachHang khachHang = new KhachHang();
+            khachHang.setHoTen("Lê Đức Phước");
             String maDH= mDatabase.push().getKey();
             LichSuDH hoaDon = new LichSuDH();
             hoaDon.setMaDH(maDH);
             hoaDon.setNgayDat("2"+i+"/01/2021");
             hoaDon.setTong(50000*i);
             hoaDon.setTrangThai("Chờ");
-            //hoaDon.setKhachHang(khachHang);
+            hoaDon.setKhachHang(khachHang);
             mDatabase.child(maDH).setValue(hoaDon);
 
         }
@@ -89,12 +91,12 @@ public class LichSuDonHang extends AppCompatActivity {
         });
     }
     private void setEvent() {
-        myRecyclerViewAdapter = new LichSuDonHangAdapter(this,R.layout.layout_item_lich_su_don_hang,data);
-        myRecyclerViewAdapter.setDelegation(new LichSuDonHangAdapter.MyItemClickListener() {
+        myRecyclerViewAdapter = new LichSuDonHangAdminAdapter(this,R.layout.layout_item_lich_su_don_hang_admin,data);
+        myRecyclerViewAdapter.setDelegation(new LichSuDonHangAdminAdapter.MyItemClickListener() {
             @Override
             public void getXacNhanDonHang(LichSuDH lichSuDH) {
                 database=FirebaseDatabase.getInstance().getReference("LichSuDonHang");
-                String trangThai = "Đã nhận";
+                String trangThai = "Xác nhận";
                 lichSuDH.setTrangThai(trangThai);
                 database.child(String.valueOf(lichSuDH.getMaDH())).updateChildren(lichSuDH.toMap());
             }
