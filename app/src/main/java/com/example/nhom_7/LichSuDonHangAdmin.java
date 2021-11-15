@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nhom_7.adapter.LichSuDonHangAdapter;
 import com.example.nhom_7.adapter.LichSuDonHangAdminAdapter;
 import com.example.nhom_7.model.KhachHang;
-import com.example.nhom_7.model.LichSuDH;
+import com.example.nhom_7.model.DonHang;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 
 public class LichSuDonHangAdmin extends AppCompatActivity {
     RecyclerView lvLichSuDH;
-    ArrayList<LichSuDH> data = new ArrayList<LichSuDH>();
+    ArrayList<DonHang> data = new ArrayList<DonHang>();
     LichSuDonHangAdminAdapter myRecyclerViewAdapter;
     DatabaseReference database;
     @Override
@@ -36,11 +35,14 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
     }
     private void list(){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("LichSuDonHang");
-        for (int i=1;i<6;i++){
+        for (int i=1;i<5;i++){
             KhachHang khachHang = new KhachHang();
             khachHang.setHoTen("Lê Đức Phước");
+            khachHang.setEmail("leducphuoc@gmail.com");
+            khachHang.setSDT("0522132115");
+            khachHang.setDiaChi("Hẻm 48, Bùi Thị Xuân, Quận 5, Tp. Hồ Chí Minh");
             String maDH= mDatabase.push().getKey();
-            LichSuDH hoaDon = new LichSuDH();
+            DonHang hoaDon = new DonHang();
             hoaDon.setMaDH(maDH);
             hoaDon.setNgayDat("2"+i+"/01/2021");
             hoaDon.setTong(50000*i);
@@ -56,7 +58,7 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
         database.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                LichSuDH donHang = snapshot.getValue(LichSuDH.class);
+                DonHang donHang = snapshot.getValue(DonHang.class);
                 if(donHang != null){
                     data.add(0,donHang);
                     myRecyclerViewAdapter.notifyDataSetChanged();
@@ -65,7 +67,7 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                LichSuDH donHang = snapshot.getValue(LichSuDH.class);
+                DonHang donHang = snapshot.getValue(DonHang.class);
                 if(donHang == null || data==null||data.isEmpty()){
                     return;
                 }
@@ -94,7 +96,7 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
         myRecyclerViewAdapter = new LichSuDonHangAdminAdapter(this,R.layout.layout_item_lich_su_don_hang_admin,data);
         myRecyclerViewAdapter.setDelegation(new LichSuDonHangAdminAdapter.MyItemClickListener() {
             @Override
-            public void getXacNhanDonHang(LichSuDH lichSuDH) {
+            public void getXacNhanDonHang(DonHang lichSuDH) {
                 database=FirebaseDatabase.getInstance().getReference("LichSuDonHang");
                 String trangThai = "Xác nhận";
                 lichSuDH.setTrangThai(trangThai);
@@ -102,11 +104,20 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
             }
 
             @Override
-            public void getHuyDonHang(LichSuDH lichSuDH) {
+            public void getHuyDonHang(DonHang lichSuDH) {
                 database=FirebaseDatabase.getInstance().getReference("LichSuDonHang");
                 String trangThai = "Huỷ";
                 lichSuDH.setTrangThai(trangThai);
                 database.child(String.valueOf(lichSuDH.getMaDH())).updateChildren(lichSuDH.toMap());
+            }
+
+            @Override
+            public void onClick(DonHang lichSuDH) {
+                Intent intent = new Intent(LichSuDonHangAdmin.this,ChiTietDonHang.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("maDonHang", lichSuDH.getMaDH());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         lvLichSuDH.setAdapter(myRecyclerViewAdapter);

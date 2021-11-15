@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nhom_7.R;
-import com.example.nhom_7.model.LichSuDH;
+import com.example.nhom_7.model.DonHang;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,14 +21,14 @@ import java.util.ArrayList;
 public class LichSuDonHangAdapter extends RecyclerView.Adapter<LichSuDonHangAdapter.MyViewHolder>{
     private Activity context;
     private int layoutID;
-    private ArrayList<LichSuDH> donHangArrayList;
+    private ArrayList<DonHang> donHangArrayList;
     private LichSuDonHangAdapter.MyItemClickListener delegation;
 
     public void setDelegation(LichSuDonHangAdapter.MyItemClickListener delegation) {
         this.delegation = delegation;
     }
 
-    public LichSuDonHangAdapter(Activity context, int layoutID, ArrayList<LichSuDH> donHangArrayList){
+    public LichSuDonHangAdapter(Activity context, int layoutID, ArrayList<DonHang> donHangArrayList){
         this.context= context;
         this.layoutID=layoutID;
         this.donHangArrayList=donHangArrayList;
@@ -43,7 +43,7 @@ public class LichSuDonHangAdapter extends RecyclerView.Adapter<LichSuDonHangAdap
 
     @Override
     public void onBindViewHolder(@NonNull LichSuDonHangAdapter.MyViewHolder holder, int position) {
-        LichSuDH lichSuDH = donHangArrayList.get(position);
+        DonHang lichSuDH = donHangArrayList.get(position);
         if(lichSuDH==null){
             return;
         }
@@ -102,7 +102,7 @@ public class LichSuDonHangAdapter extends RecyclerView.Adapter<LichSuDonHangAdap
         }
     }
     public interface MyItemClickListener{
-        void getXacNhanDonHang(LichSuDH lichSuDH);
-        void getHuyDonHang(LichSuDH lichSuDH);
+        void getXacNhanDonHang(DonHang lichSuDH);
+        void getHuyDonHang(DonHang lichSuDH);
     }
 }

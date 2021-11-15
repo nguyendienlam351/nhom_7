@@ -1,15 +1,25 @@
 package com.example.nhom_7.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LichSuDH {
+public class DonHang {
     String maDH;
     String NgayDat;
     String TrangThai;
     int Tong;
 
+    ArrayList<ChiTietDH> chiTietDonHangs;
     KhachHang khachHang ;
+
+    public ArrayList<ChiTietDH> getChiTietDonHangs() {
+        return chiTietDonHangs;
+    }
+
+    public void setChiTietDonHangs(ArrayList<ChiTietDH> chiTietDonHangs) {
+        this.chiTietDonHangs = chiTietDonHangs;
+    }
 
     public KhachHang getKhachHang() {
         return khachHang;
@@ -19,7 +29,7 @@ public class LichSuDH {
         this.khachHang = khachHang;
     }
 
-    public LichSuDH(){};
+    public DonHang(){};
 
     public String getMaDH() {
         return maDH;

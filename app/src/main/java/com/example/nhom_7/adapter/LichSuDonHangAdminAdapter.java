@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nhom_7.R;
-import com.example.nhom_7.model.LichSuDH;
+import com.example.nhom_7.model.DonHang;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,14 +21,14 @@ import java.util.ArrayList;
 public class LichSuDonHangAdminAdapter extends RecyclerView.Adapter<LichSuDonHangAdminAdapter.MyViewHolder>{
     private Activity context;
     private int layoutID;
-    private ArrayList<LichSuDH> donHangArrayList;
+    private ArrayList<DonHang> donHangArrayList;
     private LichSuDonHangAdminAdapter.MyItemClickListener delegation;
 
     public void setDelegation(LichSuDonHangAdminAdapter.MyItemClickListener delegation) {
         this.delegation = delegation;
     }
 
-    public LichSuDonHangAdminAdapter(Activity context, int layoutID, ArrayList<LichSuDH> donHangArrayList){
+    public LichSuDonHangAdminAdapter(Activity context, int layoutID, ArrayList<DonHang> donHangArrayList){
         this.context= context;
         this.layoutID=layoutID;
         this.donHangArrayList=donHangArrayList;
@@ -43,7 +43,7 @@ public class LichSuDonHangAdminAdapter extends RecyclerView.Adapter<LichSuDonHan
 
     @Override
     public void onBindViewHolder(@NonNull LichSuDonHangAdminAdapter.MyViewHolder holder, int position) {
-        LichSuDH lichSuDH = donHangArrayList.get(position);
+        DonHang lichSuDH = donHangArrayList.get(position);
         if(lichSuDH==null){
             return;
         }
@@ -64,6 +64,12 @@ public class LichSuDonHangAdminAdapter extends RecyclerView.Adapter<LichSuDonHan
             @Override
             public void onClick(View v) {
                 delegation.getHuyDonHang(lichSuDH);
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delegation.onClick(lichSuDH);
             }
         });
         if(!lichSuDH.getTrangThai().equals("Chờ")){
@@ -104,7 +110,8 @@ public class LichSuDonHangAdminAdapter extends RecyclerView.Adapter<LichSuDonHan
         }
     }
     public interface MyItemClickListener{
-        void getXacNhanDonHang(LichSuDH lichSuDH);
-        void getHuyDonHang(LichSuDH lichSuDH);
+        void getXacNhanDonHang(DonHang lichSuDH);
+        void getHuyDonHang(DonHang lichSuDH);
+        void onClick(DonHang lichSuDH);
     }
 }

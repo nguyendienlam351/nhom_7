@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layout"
+    tools:context=".ChiTietDonHang">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Mã"/>
+
+        <TextView
+            android:gravity="right"
+            android:layout_weight="8"
+            android:id="@+id/tvMa"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="12121"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Ngày đặt:"/>
+
+        <TextView
+            android:layout_weight="3"
+            android:id="@+id/tvNgayDat"
+            android:layout_width="0dp"
+            android:gravity="right"
+            style="@style/text"
+            android:text="2/7/2021"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Trạng thái:"/>
+
+        <TextView
+            android:layout_weight="3"
+            android:id="@+id/tvTrangthai"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Chờ"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Tổng:"/>
+
+        <TextView
+            android:layout_weight="3"
+            android:id="@+id/tvTong"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:textColor="#DD0808"
+            style="@style/text"
+            android:text="3.000.000 đ"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Họ tên:"/>
+
+        <TextView
+            android:layout_weight="7"
+            android:id="@+id/tvHoTen"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Nguyễn Văn A"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Email:"/>
+
+        <TextView
+            android:layout_weight="7"
+            android:id="@+id/tvEmail"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="nguyenvana@gmail.com"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Số điện thoại:"/>
+
+        <TextView
+            android:layout_weight="7"
+            android:id="@+id/tvSDT"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="0877685424"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Địa chỉ:"/>
+
+        <TextView
+            android:layout_weight="8"
+            android:id="@+id/tvDiaChi"
+            android:gravity="left"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="Hẻm 48, Bùi Thị Xuân, Quận 5, Tp. Hồ Chí Minh"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lvChiTietDH"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/boder"
+        android:layout_weight="1" />
+
+</LinearLayout>
