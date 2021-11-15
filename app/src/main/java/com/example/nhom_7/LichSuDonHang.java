@@ -1,5 +1,6 @@
 package com.example.nhom_7;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -104,6 +105,15 @@ public class LichSuDonHang extends AppCompatActivity {
                 String trangThai = "Huỷ";
                 lichSuDH.setTrangThai(trangThai);
                 database.child(String.valueOf(lichSuDH.getMaDH())).updateChildren(lichSuDH.toMap());
+            }
+
+            @Override
+            public void onClick(DonHang lichSuDH) {
+                Intent intent = new Intent(LichSuDonHang.this,ChiTietDonHang.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("maDonHang", lichSuDH.getMaDH());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         lvLichSuDH.setAdapter(myRecyclerViewAdapter);

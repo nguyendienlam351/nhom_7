@@ -65,6 +65,12 @@ public class LichSuDonHangAdapter extends RecyclerView.Adapter<LichSuDonHangAdap
                 delegation.getHuyDonHang(lichSuDH);
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delegation.onClick(lichSuDH);
+            }
+        });
         if(!lichSuDH.getTrangThai().equals("Xác nhận")){
             holder.btnDaNhan.setVisibility(View.GONE);
         }
@@ -104,5 +110,6 @@ public class LichSuDonHangAdapter extends RecyclerView.Adapter<LichSuDonHangAdap
     public interface MyItemClickListener{
         void getXacNhanDonHang(DonHang lichSuDH);
         void getHuyDonHang(DonHang lichSuDH);
+        void onClick(DonHang lichSuDH);
     }
 }

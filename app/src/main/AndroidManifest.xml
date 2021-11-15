@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom_7">
         <activity
-            android:name=".LichSuDonHang"
+            android:name=".LichSuDonHangAdmin"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -19,7 +19,7 @@
             android:name=".ChiTietDonHang"
             android:exported="false" />
         <activity
-            android:name=".LichSuDonHangAdmin"
+            android:name=".LichSuDonHang"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
