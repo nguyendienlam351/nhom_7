@@ -10,7 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom_7">
         <activity
+            android:name=".GiaoDienDangNhap"
+            android:exported="false" />
+        <activity
+            android:name=".GiaoDienDangKy"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TrangTaiKhoan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

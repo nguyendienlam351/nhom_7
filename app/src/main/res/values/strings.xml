@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">nhom_7</string>
+    <string name="tendangnhap">Tên đăng nhập</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="hienmatkhau">Hiện mật khẩu</string>
+    <string name="quenmatkhau">Quên mật khẩu</string>
+    <string name="dangnhap">ĐĂNG NHẬP</string>
+    <string name="nhaphoten">Nhập họ tên</string>
+    <string name="nhapemail">Nhập email</string>
+    <string name="nhapmatkhau">Nhập mật khẩu</string>
+    <string name="xacnhanmatkhau">Xác nhận mật khẩu</string>
+    <string name="nhapsodienthoai">Nhập số điện thoại</string>
+    <string name="nhapdiachi">Nhập địa chỉ</string>
+    <string name="dangki">ĐĂNG KÍ</string>
+    <string name="huy">Hủy</string>
+    <string name="gui">Gửi</string>
+    <string name="loinhan">Chúng tôi sẽ gửi link đổi mật khẩu vào Email của bạn.</string>
+    <string name="nhapmail">Nhập email</string>
+    <string name="email">Email</string>
+
 </resources>
