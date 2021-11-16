@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">nhom_7</string>
+    <string name="QuanLiDonHang">Quản lí đơn hàng</string>
+    <string name="LichSuDonHang">Lịch sử đơn hàng</string>
 </resources>

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quản lí đơn hàng"
+        android:text="@string/QuanLiDonHang"
         android:textSize="35dp"
         android:gravity="center"
         android:textColor="@color/black"/>
