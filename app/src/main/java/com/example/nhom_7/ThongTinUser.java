@@ -10,8 +10,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class ThongTinUser extends Fragment {
+    CustomActionBar actionBar;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_thong_tin_user,container,false);
+        setControl(view);
+        setEvent();
         return view;
+    }
+
+    private void setEvent() {
+        actionBar.setActionBarName("Thông tin cá nhân");
+    }
+
+    private void setControl(View view) {
+        actionBar = view.findViewById(R.id.actionbar);
     }
 }

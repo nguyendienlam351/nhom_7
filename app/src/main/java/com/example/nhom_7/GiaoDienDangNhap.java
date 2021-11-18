@@ -62,10 +62,10 @@ public class GiaoDienDangNhap extends Fragment {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         String value = snapshot.getValue(String.class);
                                         if(value.compareTo("khachhang")==0){
-                                            Intent intent = new Intent(getContext(),MainActivity.class);
+                                            Intent intent = new Intent(getContext(),GiaoDienKhachHang.class);
                                             startActivity(intent);
                                         }else if (value.compareTo("nhanvien")==0){
-                                            Intent intent = new Intent(getContext(),MainActivity.class);
+                                            Intent intent = new Intent(getContext(),GiaoDienChinh.class);
                                             startActivity(intent);
                                         }
                                     }
@@ -76,6 +76,7 @@ public class GiaoDienDangNhap extends Fragment {
                                     }
                                 });
                                 Toast.makeText(getContext(),"Đăng nhập thành công !",Toast.LENGTH_SHORT).show();
+
                             }else{
                                 Toast.makeText(getContext(),"Sai tên đăng nhập hoặc mật khẩu !",Toast.LENGTH_LONG).show();
                             }

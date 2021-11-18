@@ -13,6 +13,12 @@
             android:name=".GiaoDienDangNhap"
             android:exported="false" />
         <activity
+            android:name=".GiaoDienKhachHang"
+            android:exported="false" />
+        <activity
+            android:name=".GiaoDienChinh"
+            android:exported="false" />
+        <activity
             android:name=".GiaoDienDangKy"
             android:exported="false" />
         <activity
