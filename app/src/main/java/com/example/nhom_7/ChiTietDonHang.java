@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class ChiTietDonHang extends AppCompatActivity {
@@ -86,7 +88,8 @@ public class ChiTietDonHang extends AppCompatActivity {
                 if(donHang!=null){
                     tvMa.setText(donHang.getMaDH());
                     tvNgayDat.setText(donHang.getNgayDat());
-                    tvTong.setText(String.valueOf(donHang.getTong()));
+                    NumberFormat formatter = new DecimalFormat("#,###,###");
+                    tvTong.setText(formatter.format(donHang.getTong())+ " đ");
                     tvTrangThai.setText(donHang.getTrangThai());
                     tvHoTen.setText(donHang.getKhachHang().getHoTen());
                     tvEmail.setText(donHang.getKhachHang().getEmail());

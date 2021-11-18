@@ -23,7 +23,7 @@
                 android:layout_weight="2"
                 android:layout_width="0dp"
                 style="@style/text"
-                android:text="Mã"/>
+                android:text="@string/Ma"/>
 
             <TextView
                 android:gravity="right"
@@ -31,7 +31,7 @@
                 android:id="@+id/tvMa"
                 android:layout_width="0dp"
                 style="@style/text"
-                android:text="12121"/>
+                android:text="@string/ma"/>
         </LinearLayout>
 
         <LinearLayout
@@ -43,7 +43,7 @@
                 android:layout_weight="7"
                 android:layout_width="0dp"
                 style="@style/text"
-                android:text="Ngày đặt:"/>
+                android:text="@string/NgayDat"/>
 
             <TextView
                 android:layout_weight="3"
@@ -51,7 +51,7 @@
                 android:layout_width="0dp"
                 android:gravity="right"
                 style="@style/text"
-                android:text="2/7/2021"/>
+                android:text="@string/Ngaydat"/>
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
                 android:layout_weight="7"
                 android:layout_width="0dp"
                 style="@style/text"
-                android:text="Trạng thái:"/>
+                android:text="@string/TrangThai"/>
 
             <TextView
                 android:layout_weight="3"
@@ -72,7 +72,7 @@
                 android:gravity="right"
                 android:layout_width="0dp"
                 style="@style/text"
-                android:text="Chờ"/>
+                android:text="@string/Cho"/>
 
         </LinearLayout>
 
@@ -85,7 +85,7 @@
                 android:layout_weight="7"
                 android:layout_width="0dp"
                 style="@style/text"
-                android:text="Tổng:"/>
+                android:text="@string/Tong"/>
 
             <TextView
                 android:layout_weight="3"
@@ -94,7 +94,7 @@
                 android:layout_width="0dp"
                 android:textColor="#DD0808"
                 style="@style/text"
-                android:text="3.000.000 đ"/>
+                android:text="@string/Gia"/>
 
         </LinearLayout>
 
@@ -110,7 +110,7 @@
                 android:backgroundTint="#DD0808"
                 android:textColor="@color/white"
                 style="@style/text"
-                android:text="Huỷ"/>
+                android:text="@string/Huy"/>
 
             <Space
                 android:layout_width="0dp"
@@ -124,7 +124,7 @@
                 android:layout_width="0dp"
                 android:backgroundTint="#172FB6"
                 style="@style/text"
-                android:text="Đã nhận"/>
+                android:text="@string/DaNhan"/>
 
         </LinearLayout>
     </LinearLayout>
