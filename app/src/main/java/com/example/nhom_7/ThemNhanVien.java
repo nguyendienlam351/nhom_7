@@ -28,6 +28,7 @@ public class ThemNhanVien extends AppCompatActivity {
     Button btnDangKi;
     ArrayList<TaiKhoan> data = new ArrayList<TaiKhoan>();
     FirebaseAuth auth;
+    CustomActionBar actionBar;
     TaiKhoan taiKhoan = new TaiKhoan();
     DatabaseReference myref = FirebaseDatabase.getInstance().getReference("TaiKhoan");
     @Override
@@ -39,6 +40,7 @@ public class ThemNhanVien extends AppCompatActivity {
     }
 
     private void setEvent() {
+        actionBar.setActionBarName("Thêm nhân viên");
         btnDangKi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +72,7 @@ public class ThemNhanVien extends AppCompatActivity {
     }
 
     private void setControl() {
+        actionBar = findViewById(R.id.actionbar);
         edHoTen = findViewById(R.id.edHoTen);
         edEmail = findViewById(R.id.edEmail);
         edSoDienThoai = findViewById(R.id.edSoDienThoai);
