@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="RatingBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
+        <item name="colorControlNormal">@android:color/holo_green_light</item>
+    </style>
     //nút
     <style name="button">
         <item name="android:layout_height">wrap_content</item>

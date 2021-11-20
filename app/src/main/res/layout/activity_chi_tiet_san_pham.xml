@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChiTietSanPham">
+
+    <LinearLayout style="@style/layout">
+
+        <ImageView
+            android:id="@+id/imgSanPham"
+            android:layout_width="@dimen/largeImage"
+            android:layout_height="@dimen/largeImage"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:src="@drawable/image" />
+
+        <TextView
+            android:id="@+id/tvTenSanPham"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:text="ten" />
+
+        <TextView
+            android:id="@+id/tvLoaiSanPham"
+            style="@style/text"
+            android:layout_width="match_parent"
+            android:text="loai" />
+
+        <TextView
+            android:id="@+id/tvGia"
+            style="@style/text"
+            android:layout_width="match_parent"
+            android:text="3123" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                style="@style/spinnerLayout"
+                android:layout_width="0dp"
+                android:layout_weight="5">
+
+                <Spinner
+                    android:id="@+id/spnSize"
+                    style="@style/spinner" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSoLuong"
+                style="@style/text"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="Số lượng" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/rbDanhGia"
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/RatingBar"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="0.1" />
+
+            <TextView
+                android:id="@+id/tvDanhGia"
+                style="@style/text"
+                android:layout_width="match_parent"
+                android:text="0/5" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMonTa"
+            style="@style/text"
+            android:layout_width="match_parent"
+            android:text="Mô tả" />
+    </LinearLayout>
+</LinearLayout>

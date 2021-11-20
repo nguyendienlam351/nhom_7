@@ -4,20 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.nhom_7.adapter.SanPhamAdapter;
 import com.example.nhom_7.model.LoaiSanPham;
 import com.example.nhom_7.model.SanPham;
-import com.example.nhom_7.model.Size;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,8 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class TrangChu extends AppCompatActivity {
@@ -53,6 +49,16 @@ public class TrangChu extends AppCompatActivity {
 
         sanPhamArrayList = new ArrayList<SanPham>();
         sanPhamAdapter = new SanPhamAdapter(this, R.layout.layout_item_san_pham, sanPhamArrayList);
+        sanPhamAdapter.setDelegation(new SanPhamAdapter.ItemClickListener() {
+            @Override
+            public void itemClick(SanPham sanPham) {
+                Intent intent = new Intent(TrangChu.this, ChiTietSanPham.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("maSanPham", sanPham.getMaSanPham());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         lvDanhSach.setLayoutManager(layoutManager);
@@ -117,21 +123,21 @@ public class TrangChu extends AppCompatActivity {
                             }
                         });
                         break;
-                    case "Yêu thích":
-                        sanPhamAdapter.sortList(new Comparator<SanPham>() {
-                            @Override
-                            public int compare(SanPham o1, SanPham o2) {
-                                if (o1.getDanhGia() > o2.getDanhGia()) {
-                                    return -1;
-                                }
-                                if (o1.getDanhGia() < o2.getDanhGia()) {
-                                    return 1;
-                                } else {
-                                    return 0;
-                                }
-                            }
-                        });
-                        break;
+//                    case "Yêu thích":
+//                        sanPhamAdapter.sortList(new Comparator<SanPham>() {
+//                            @Override
+//                            public int compare(SanPham o1, SanPham o2) {
+//                                if (o1.getDanhGia() > o2.getDanhGia()) {
+//                                    return -1;
+//                                }
+//                                if (o1.getDanhGia() < o2.getDanhGia()) {
+//                                    return 1;
+//                                } else {
+//                                    return 0;
+//                                }
+//                            }
+//                        });
+//                        break;
                 }
 
             }

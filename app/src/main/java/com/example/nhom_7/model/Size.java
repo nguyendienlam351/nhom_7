@@ -34,6 +34,6 @@ public class Size {
 
     @Override
     public String toString() {
-        return tenSize + ": "+ soLuong;
+        return tenSize;
     }
 }

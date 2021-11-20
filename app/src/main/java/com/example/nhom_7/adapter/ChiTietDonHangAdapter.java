@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nhom_7.R;
-import com.example.nhom_7.model.SanPham;
+import com.example.nhom_7.model.ChiTietDonHang;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -27,51 +28,78 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamViewHolder> {
+public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAdapter.ChiTietDonHangViewHolder>{
     private Activity context;
     private int layoutID;
-    private ArrayList<SanPham> sanPhamArrayList;
-    private ItemClickListener delegation;
+    private ArrayList<ChiTietDonHang> chiTietDonHangArrayList;
+    private ChiTietDonHangClickListener delegation;
     private StorageReference storage;
 
-    public void setDelegation(ItemClickListener delegation) {
+    public void setDelegation(ChiTietDonHangClickListener delegation) {
         this.delegation = delegation;
     }
 
-    public SanPhamAdapter(Activity context, int layoutID, ArrayList<SanPham> sanPhamArrayList) {
+    public ChiTietDonHangAdapter(Activity context, int layoutID, ArrayList<ChiTietDonHang> chiTietDonHangArrayList) {
         this.context = context;
         this.layoutID = layoutID;
-        this.sanPhamArrayList = sanPhamArrayList;
+        this.chiTietDonHangArrayList = chiTietDonHangArrayList;
         storage = FirebaseStorage.getInstance().getReference("SanPham");
     }
 
 
     @NonNull
     @Override
-    public SanPhamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ChiTietDonHangViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = context.getLayoutInflater();
         CardView view = (CardView) layoutInflater.inflate(viewType, parent, false);
-        return new SanPhamViewHolder(view);
+        return new ChiTietDonHangViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SanPhamViewHolder holder, int position) {
-        SanPham sanPham = sanPhamArrayList.get(position);
+    public void onBindViewHolder(@NonNull ChiTietDonHangViewHolder holder, int position) {
+        ChiTietDonHang chiTietDonHang = chiTietDonHangArrayList.get(position);
 
-        getAnh(sanPham.getAnh(),holder.imgAnh);
+        getAnhMon(chiTietDonHang.getAnh(),holder.imgAnh);
 
-        holder.tvTen.setText(sanPham.getTen());
+        holder.tvTen.setText(chiTietDonHang.getTen());
+
         NumberFormat formatter = new DecimalFormat("#,###,###");
-        holder.tvGia.setText(formatter.format(sanPham.getGia()) + " đ");
+        holder.tvGia.setText(formatter.format(chiTietDonHang.getGia()) + " đ");
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.tvSoLuong.setText(String.valueOf(chiTietDonHang.getSize().getSoLuong()));
+
+        holder.tvSize.setText(chiTietDonHang.getSize().getTenSize());
+
+        holder.btnTang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(delegation != null){
-                    delegation.itemClick(sanPham);
+                    delegation.tangSoLuong(chiTietDonHang);
+                }
+                else {
+                    Toast.makeText(context, "you must set delegation before", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        holder.btnGiam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(delegation != null){
+                    delegation.giamSoLuong(chiTietDonHang);
+                }
+                else {
+                    Toast.makeText(context, "you must set delegation before", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        holder.btnXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(delegation != null){
+                    delegation.iconClick(chiTietDonHang);
                 }
                 else {
                     Toast.makeText(context, "you must set delegation before", Toast.LENGTH_SHORT).show();
@@ -80,7 +108,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         });
     }
 
-    private void getAnh(String anh, ImageView imgMon) {
+    private void getAnhMon(String anh, ImageView imgMon) {
         int dot = anh.lastIndexOf('.');
         String base = (dot == -1) ? anh : anh.substring(0, dot);
         String extension = (dot == -1) ? "" : anh.substring(dot + 1);
@@ -105,7 +133,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         }
     }
 
-
     @Override
     public int getItemViewType(int position) {
         return layoutID;
@@ -113,33 +140,34 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
 
     @Override
     public int getItemCount() {
-        return sanPhamArrayList.size();
+        return chiTietDonHangArrayList.size();
     }
 
-    public void filterList(ArrayList<SanPham> sanPhamArrayList){
-        this.sanPhamArrayList = sanPhamArrayList;
-        notifyDataSetChanged();
-    }
-
-    public void sortList(Comparator<SanPham> sanPhamComparator){
-        Collections.sort(sanPhamArrayList, sanPhamComparator);
-        notifyDataSetChanged();
-    }
-
-    public static class SanPhamViewHolder extends RecyclerView.ViewHolder {
+    public static class ChiTietDonHangViewHolder extends RecyclerView.ViewHolder {
         public ImageView imgAnh;
         public TextView tvTen;
         public TextView tvGia;
+        public ImageButton btnTang;
+        public ImageButton btnGiam;
+        public TextView tvSoLuong;
+        public ImageButton btnXoa;
+        public TextView tvSize;
 
-        public SanPhamViewHolder(@NonNull View itemView) {
+        public ChiTietDonHangViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAnh = itemView.findViewById(R.id.imgAnh);
             tvTen = itemView.findViewById(R.id.tvTen);
             tvGia = itemView.findViewById(R.id.tvGia);
+            btnTang = itemView.findViewById(R.id.btnTang);
+            btnGiam = itemView.findViewById(R.id.btnGiam);
+            tvSoLuong = itemView.findViewById(R.id.tvSoLuong);
+            btnXoa = itemView.findViewById(R.id.btnXoa);
+            tvSize = itemView.findViewById(R.id.tvSize);
         }
     }
-
-    public interface ItemClickListener {
-        public void itemClick(SanPham sanPham);
+    public interface ChiTietDonHangClickListener{
+        public void iconClick(ChiTietDonHang chiTietDonHang);
+        public void tangSoLuong(ChiTietDonHang chiTietDonHang);
+        public void giamSoLuong(ChiTietDonHang chiTietDonHang);
     }
 }

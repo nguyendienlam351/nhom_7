@@ -1,6 +1,7 @@
 package com.example.nhom_7.model;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class SanPham {
     String maSanPham;
@@ -10,7 +11,7 @@ public class SanPham {
     String loai;
     String moTa;
     ArrayList<Size> size;
-    double danhGia;
+    ArrayList<Float> danhGia = new ArrayList<Float>();
 
     public SanPham() {
     }
@@ -81,11 +82,11 @@ public class SanPham {
         this.size = size;
     }
 
-    public double getDanhGia() {
+    public ArrayList<Float> getDanhGia() {
         return danhGia;
     }
 
-    public void setDanhGia(double danhGia) {
+    public void setDanhGia(ArrayList<Float> danhGia) {
         this.danhGia = danhGia;
     }
 }
