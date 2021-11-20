@@ -1,29 +1,29 @@
 package com.example.nhom_7;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.example.nhom_7.adapter.MyViewPagerAdapterNhanVien;
 import com.example.nhom_7.adapter.MyViewPagerAdapterQuanLy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class GiaoDienKhachHang extends AppCompatActivity {
+public class GiaoDienNhanVien extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private BottomNavigationView bottomNavigationView;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_giao_dien_khach_hang);
+        setContentView(R.layout.activity_giao_dien_nhan_vien);
         setControl();
         setEvent();
     }
     private void setEvent() {
-        MyViewPagerAdapterQuanLy myViewPagerAdapterQuanLy = new MyViewPagerAdapterQuanLy(this);
-        viewPager2.setAdapter(myViewPagerAdapterQuanLy);
+        MyViewPagerAdapterNhanVien myViewPagerAdapterNhanVien = new MyViewPagerAdapterNhanVien(this);
+        viewPager2.setAdapter(myViewPagerAdapterNhanVien);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -34,9 +34,12 @@ public class GiaoDienKhachHang extends AppCompatActivity {
                         bottomNavigationView.getMenu().findItem(R.id.action_home).setChecked(true);
                         break;
                     case 1:
-                        bottomNavigationView.getMenu().findItem(R.id.action_cart).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.action_manage).setChecked(true);
                         break;
                     case 2:
+                        bottomNavigationView.getMenu().findItem(R.id.action_cart).setChecked(true);
+                        break;
+                    case 3:
                         bottomNavigationView.getMenu().findItem(R.id.action_info).setChecked(true);
                         break;
                 }
@@ -48,6 +51,9 @@ public class GiaoDienKhachHang extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.action_home:
                         viewPager2.setCurrentItem(0);
+                        break;
+                    case R.id.action_manage:
+                        viewPager2.setCurrentItem(1);
                         break;
                     case R.id.action_cart:
                         viewPager2.setCurrentItem(2);

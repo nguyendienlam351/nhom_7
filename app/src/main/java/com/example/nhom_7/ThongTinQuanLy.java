@@ -12,22 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.nhom_7.model.TaiKhoan;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ThongTinUser extends Fragment {
+public class ThongTinQuanLy extends Fragment {
     private CustomActionBar actionBar;
     private TextView tvTenUser;
-    private Button btnThongTinUser, btnDangXuat, btnDoiMatKhau, btnLichSu;
+    private Button btnThongTinUser, btnDangXuat, btnDoiMatKhau, btnQuanLyNV;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_thong_tin_user,container,false);
+        View view = inflater.inflate(R.layout.layout_thong_tin_quan_ly,container,false);
         setControl(view);
         setEvent();
         return view;
@@ -41,7 +41,7 @@ public class ThongTinUser extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 TaiKhoan taiKhoan = snapshot.getValue(TaiKhoan.class);
-                tvTenUser.setText(String.valueOf(taiKhoan.hoTen));
+                tvTenUser.setText(String.valueOf(taiKhoan.getHoTen()));
             }
 
             @Override
@@ -79,7 +79,7 @@ public class ThongTinUser extends Fragment {
         btnThongTinUser = view.findViewById(R.id.btnThayDoiInfo);
         btnDangXuat = view.findViewById(R.id.btnDangXuat);
         btnDoiMatKhau = view.findViewById(R.id.btnDoiMatKhau);
-        btnLichSu = view.findViewById(R.id.btnLichSu);
+        btnQuanLyNV = view.findViewById(R.id.btnQuanLyNV);
         tvTenUser = view.findViewById(R.id.tvTenUser);
 
     }

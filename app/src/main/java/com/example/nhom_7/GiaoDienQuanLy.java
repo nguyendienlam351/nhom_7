@@ -8,23 +8,24 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.nhom_7.adapter.MyViewPagerAdapterQuanLy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class GiaoDienChinh extends AppCompatActivity {
+public class GiaoDienQuanLy extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_giao_dien_chinh);
+        setContentView(R.layout.layout_giao_dien_quan_ly);
         setControl();
         setEvent();
     }
 
     private void setEvent() {
-        MyViewPagerAdapterGDC myViewPagerAdapterGDC = new MyViewPagerAdapterGDC(this);
-        viewPager2.setAdapter(myViewPagerAdapterGDC);
+        MyViewPagerAdapterQuanLy myViewPagerAdapterQuanLy = new MyViewPagerAdapterQuanLy(this);
+        viewPager2.setAdapter(myViewPagerAdapterQuanLy);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

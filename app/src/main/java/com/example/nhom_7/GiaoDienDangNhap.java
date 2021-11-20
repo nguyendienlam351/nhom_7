@@ -2,7 +2,6 @@ package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -16,10 +15,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -64,8 +61,11 @@ public class GiaoDienDangNhap extends Fragment {
                                         if(value.compareTo("khachhang")==0){
                                             Intent intent = new Intent(getContext(),GiaoDienKhachHang.class);
                                             startActivity(intent);
+                                        }else if (value.compareTo("quanly")==0){
+                                            Intent intent = new Intent(getContext(), GiaoDienQuanLy.class);
+                                            startActivity(intent);
                                         }else if (value.compareTo("nhanvien")==0){
-                                            Intent intent = new Intent(getContext(),GiaoDienChinh.class);
+                                            Intent intent = new Intent(getContext(), GiaoDienNhanVien.class);
                                             startActivity(intent);
                                         }
                                     }

@@ -1,4 +1,4 @@
-package com.example.nhom_7;
+package com.example.nhom_7.model;
 
 public class TaiKhoan {
     String hoTen;
