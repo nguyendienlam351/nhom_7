@@ -4,17 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ThayDoiThongTin">
 
     <com.example.nhom_7.CustomActionBar
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="@string/thaydoithongtin"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="30dp"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hoten"/>
         <EditText
             android:id="@+id/edHoTen"
             android:layout_width="match_parent"
@@ -22,53 +34,38 @@
             android:hint="@string/nhaphoten"
             android:paddingLeft="20dp"
             android:background="@drawable/boder"/>
-        <EditText
-            android:id="@+id/edNhapEmail"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"
-            android:hint="@string/nhapemail"
-            android:background="@drawable/boder"/>
-        <EditText
-            android:id="@+id/edNhapMK"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"
-            android:hint="@string/nhapmatkhau"
-            android:background="@drawable/boder"/>
-        <EditText
-            android:id="@+id/edXacNhanMK"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"
-            android:hint="@string/xacnhanmatkhau"
-            android:background="@drawable/boder"/>
+            android:text="@string/sodienthoai"/>
         <EditText
             android:id="@+id/edSoDienThoai"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="15dp"
             android:paddingLeft="20dp"
             android:inputType="number"
             android:hint="@string/nhapsodienthoai"
             android:background="@drawable/boder"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/diachi"/>
         <EditText
             android:id="@+id/edDiaChi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="15dp"
             android:paddingLeft="20dp"
             android:hint="@string/nhapdiachi"
             android:background="@drawable/boder"/>
         <Button
-            android:id="@+id/btnDangKi"
-            android:layout_width="match_parent"
+            android:id="@+id/btnLuu"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
-            android:text="@string/dangki"/>
+            android:text="@string/luu"/>
     </LinearLayout>
 
 </LinearLayout>

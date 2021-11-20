@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom_7">
         <activity
+            android:name=".DoiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".ThayDoiThongTin"
+            android:exported="false" />
+        <activity
             android:name=".GiaoDienDangNhap"
             android:exported="false" />
         <activity

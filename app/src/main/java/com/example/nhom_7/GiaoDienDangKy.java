@@ -48,21 +48,25 @@ public class GiaoDienDangKy extends Fragment {
         btnDangKi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (kiemtratrong() == true && kiemtraEmail() == true && kiemtraMK() == true){
+                if (kiemtratrong() == true && kiemtraEmail() == true && kiemtraMK() == true && kiemtradodaimk()==true && kiemtradinhdangEmail() == true){
                     String email = edEmail.getText().toString().trim();
                     String matkhau = edMatKhau.getText().toString().trim();
                     auth.createUserWithEmailAndPassword(email,matkhau).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            taiKhoan.setHoTen(edHoTen.getText().toString());
-                            taiKhoan.setEmail(edEmail.getText().toString());
-                            taiKhoan.setSoDienThoai(Integer.parseInt(edSoDienThoai.getText().toString()));
-                            taiKhoan.setDiaChi(edDiaChi.getText().toString());
-                            taiKhoan.setLoaiTaiKhoan("khachhang");
-                            taiKhoan.setMaKH(auth.getUid());
-                            myref.child(auth.getUid()).setValue(taiKhoan);
-                            Toast.makeText(getContext(), "Đăng kí thành công !", Toast.LENGTH_LONG).show();
-                            xoatrang();
+                            if (task.isSuccessful()){
+                                taiKhoan.setHoTen(edHoTen.getText().toString());
+                                taiKhoan.setEmail(edEmail.getText().toString());
+                                taiKhoan.setSoDienThoai(Integer.parseInt(edSoDienThoai.getText().toString()));
+                                taiKhoan.setDiaChi(edDiaChi.getText().toString());
+                                taiKhoan.setLoaiTaiKhoan("khachhang");
+                                taiKhoan.setMaKH(auth.getUid());
+                                myref.child(auth.getUid()).setValue(taiKhoan);
+                                Toast.makeText(getContext(), "Đăng kí thành công !", Toast.LENGTH_LONG).show();
+                                xoatrang();
+                            }else {
+                                Toast.makeText(getContext(), "Đăng kí thất bại !", Toast.LENGTH_LONG).show();
+                            }
                         }
                     });
 
@@ -161,5 +165,21 @@ public class GiaoDienDangKy extends Fragment {
         edDiaChi.setText("");
         edXacNhanMK.setText("");
         edEmail.setText("");
+    }
+    private boolean kiemtradodaimk(){
+        boolean kiemtra = true;
+        if (edMatKhau.getText().toString().trim().length() < 6){
+            kiemtra = false;
+            edMatKhau.setError("Mật khẩu ít nhất 6 kí tự !");
+        }
+        return kiemtra;
+    }
+    private boolean kiemtradinhdangEmail(){
+        boolean kiemtra = true;
+        if(edEmail.getText().toString().trim().contains("@gmail.com") ==  false){
+            edEmail.setError("Sai định dạng Email (abc@gmail.com) !");
+            kiemtra = false;
+        }
+        return kiemtra;
     }
 }

@@ -4,71 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".DoiMatKhau">
 
     <com.example.nhom_7.CustomActionBar
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="@string/doimatkhau"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="30dp"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/matkhaucu"/>
         <EditText
-            android:id="@+id/edHoTen"
+            android:id="@+id/edMatKhauCu"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="@string/nhaphoten"
+            android:hint="@string/nhapmkcu"
             android:paddingLeft="20dp"
             android:background="@drawable/boder"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/matkhaumoi"/>
         <EditText
-            android:id="@+id/edNhapEmail"
+            android:id="@+id/edMatKhauMoi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="15dp"
             android:paddingLeft="20dp"
-            android:hint="@string/nhapemail"
+            android:hint="@string/nhapmkmoi"
             android:background="@drawable/boder"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/xacnhanmkmoi"/>
         <EditText
-            android:id="@+id/edNhapMK"
+            android:id="@+id/edXacNhanMKMoi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"
-            android:hint="@string/nhapmatkhau"
-            android:background="@drawable/boder"/>
-        <EditText
-            android:id="@+id/edXacNhanMK"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
             android:paddingLeft="20dp"
             android:hint="@string/xacnhanmatkhau"
             android:background="@drawable/boder"/>
-        <EditText
-            android:id="@+id/edSoDienThoai"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"
-            android:inputType="number"
-            android:hint="@string/nhapsodienthoai"
-            android:background="@drawable/boder"/>
-        <EditText
-            android:id="@+id/edDiaChi"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="20dp"
-            android:hint="@string/nhapdiachi"
-            android:background="@drawable/boder"/>
         <Button
-            android:id="@+id/btnDangKi"
-            android:layout_width="match_parent"
+            android:id="@+id/btnThayDoi"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
-            android:text="@string/dangki"/>
+            android:text="@string/thaydoi"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -49,10 +49,10 @@ public class GiaoDienKhachHang extends AppCompatActivity {
                         viewPager2.setCurrentItem(0);
                         break;
                     case R.id.action_cart:
-                        viewPager2.setCurrentItem(1);
+                        viewPager2.setCurrentItem(2);
                         break;
                     case R.id.action_info:
-                        viewPager2.setCurrentItem(2);
+                        viewPager2.setCurrentItem(3);
                         break;
                 }
                 return true;
