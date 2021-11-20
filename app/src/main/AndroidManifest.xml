@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom_7">
         <activity
+            android:name=".LichSuDonHangAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".ChiTietNhanVien"
+            android:exported="false" />
+        <activity
             android:name=".LichSuDonHang"
             android:exported="false" />
         <activity
@@ -19,7 +25,7 @@
             android:name=".ChiTietDonHang"
             android:exported="false" />
         <activity
-            android:name=".LichSuDonHangAdmin"
+            android:name=".QuanLyNhanVien"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
