@@ -2,15 +2,16 @@ package com.example.nhom_7.model;
 
 import java.util.ArrayList;
 
-public class ChiTietDonHang {
+public class ChiTietDH {
     String maSanPham;
     String anh;
     String ten;
     int gia;
-    Size size;
+    String size;
+    int soLuong;
     boolean danhGia;
 
-    public ChiTietDonHang() {
+    public ChiTietDH() {
     }
 
     public String getMaSanPham() {
@@ -45,11 +46,11 @@ public class ChiTietDonHang {
         this.gia = gia;
     }
 
-    public Size getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Size size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -60,4 +61,13 @@ public class ChiTietDonHang {
     public void setDanhGia(boolean danhGia) {
         this.danhGia = danhGia;
     }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
 }

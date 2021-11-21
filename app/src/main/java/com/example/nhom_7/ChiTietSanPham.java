@@ -8,19 +8,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nhom_7.model.ChiTietDH;
 import com.example.nhom_7.model.LoaiSanPham;
 import com.example.nhom_7.model.SanPham;
-import com.example.nhom_7.model.Size;
+import com.example.nhom_7.model.TaiKhoan;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -46,13 +45,15 @@ public class ChiTietSanPham extends AppCompatActivity {
     TextView tvMonTa;
     TextView tvDanhGia;
     TextView tvSoLuong;
+    Button btnThem;
     RatingBar rbDanhGia;
     Spinner spnSize;
     DatabaseReference database;
     StorageReference storage;
     SanPham sanPham;
-    ArrayList<Size> sizeArrayList;
-    ArrayAdapter<Size> sizeArrayAdapter;
+    ArrayList<String> sizeArrayList;
+    ArrayAdapter<String> sizeArrayAdapter;
+    TaiKhoan taiKhoan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,42 +75,68 @@ public class ChiTietSanPham extends AppCompatActivity {
             getDataSanPham(maSanPham);
         }
 
-        sizeArrayList = new ArrayList<Size>();
-        sizeArrayAdapter = new ArrayAdapter<Size>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, sizeArrayList);
+        getDataGioHang("8PnGpfFjB3Z6evSiAzDp9Xzwy7y2");
+
+        //Spinner size sản phẩm
+        sizeArrayList = new ArrayList<String>();
+        sizeArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, sizeArrayList);
         sizeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSize.setAdapter(sizeArrayAdapter);
 
-        spnSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tvSoLuong.setText("Số lượng: " +sizeArrayList.get(position).getSoLuong());
-            }
 
+        //Thêm vào giỏ hàng
+        btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onClick(View v) {
+                if (!kiemtraTonTai(sanPham.getMaSanPham())) {
+                    //Tạo chi tiết đơn hàng
+                    ChiTietDH chiTietDH = new ChiTietDH();
+                    chiTietDH.setMaSanPham(sanPham.getMaSanPham());
+                    chiTietDH.setTen(sanPham.getTen());
+                    chiTietDH.setGia(sanPham.getGia());
+                    chiTietDH.setAnh(sanPham.getAnh());
+                    chiTietDH.setDanhGia(true);
+                    chiTietDH.setSize(spnSize.getSelectedItem().toString());
+                    chiTietDH.setSoLuong(1);
+                    taiKhoan.getGioHang().add(0, chiTietDH);
 
+                    database.child("TaiKhoan").child(taiKhoan.getMaKH()).child("gioHang").setValue(taiKhoan.getGioHang()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Intent intent = new Intent(ChiTietSanPham.this, GioHang.class);
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    Toast.makeText(ChiTietSanPham.this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
     }
 
 
-    private void getDataSanPham(String maSanPham) {
-        database.child("SanPham").child(maSanPham).addValueEventListener(new ValueEventListener() {
+    //Kiểm tra sản phẩm tồn tại trong đơn hàng
+    private boolean kiemtraTonTai(String maSanPham){
+        for(ChiTietDH chiTietDH : taiKhoan.getGioHang()){
+            if(chiTietDH.getMaSanPham().equals(maSanPham) && chiTietDH.getSize().equals(spnSize.getSelectedItem().toString())){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    //Lấy dữ liệu giỏ hàng
+    private  void getDataGioHang(String maNhanVien){
+        database.child("TaiKhoan").child(maNhanVien).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                sanPham = snapshot.getValue(SanPham.class);
-                tvTenSanPham.setText(sanPham.getTen());
-                NumberFormat formatter = new DecimalFormat("#,###,###");
-                tvGia.setText(formatter.format(sanPham.getGia()) + " đ");
-                tvMonTa.setText("Mô tả\n" + sanPham.getMoTa());
-                tvDanhGia.setText(sanPham.getDanhGia()+ "/5");
-//                rbDanhGia.setRating(sanPham.getDanhGia());
-                getAnhMon(sanPham.getAnh());
-                getDataLoaiSanPham(sanPham.getLoai());
-                sizeArrayList.clear();
-                sizeArrayList.addAll(sanPham.getSize());
-                sizeArrayAdapter.notifyDataSetChanged();
+                TaiKhoan nTaiKhoan = snapshot.getValue(TaiKhoan.class);
+                if (nTaiKhoan != null) {
+                    taiKhoan = nTaiKhoan;
+                }
             }
 
             @Override
@@ -119,6 +146,54 @@ public class ChiTietSanPham extends AppCompatActivity {
         });
     }
 
+
+    //Lấy dữ liệu sản phẩm theo mã
+    private void getDataSanPham(String maSanPham) {
+        database.child("SanPham").child(maSanPham).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                SanPham nSanPham = snapshot.getValue(SanPham.class);
+
+                if(nSanPham != null) {
+                    sanPham = nSanPham;
+                    //Hiển thị dữ liệu sản phẩm
+                    tvTenSanPham.setText(sanPham.getTen());
+                    NumberFormat formatter = new DecimalFormat("#,###,###");
+                    tvGia.setText(formatter.format(sanPham.getGia()) + " đ");
+                    tvMonTa.setText("Mô tả\n" + sanPham.getMoTa());
+                    tvDanhGia.setText(getDanhGia(sanPham.getDanhGia()) + "/5");
+                    //Hiển thị đánh giá
+                    DecimalFormat decimalFormat = new DecimalFormat("##.#");
+                    tvDanhGia.setText(decimalFormat.format(getDanhGia(sanPham.getDanhGia())) + "/5");
+                    //Hiển thị ảnh
+                    getAnhMon(sanPham.getAnh());
+                    //Hiển thị loại
+                    getDataLoaiSanPham(sanPham.getLoai());
+                    //Hiển thi size
+                    sizeArrayList.clear();
+                    sizeArrayList.addAll(sanPham.getSize());
+                    sizeArrayAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    //Tính điểm đánh giá
+    private float getDanhGia(ArrayList<Float> danhGiaArrayList){
+        float ratingSum = 0f;
+        for(Float r: danhGiaArrayList)  {
+            ratingSum += r;
+        }
+        return  ratingSum / danhGiaArrayList.size();
+    }
+
+
+    //lấy dữ liệu loại sản phẩm
     private void getDataLoaiSanPham(String maLoai) {
         database.child("LoaiSanPham").child(maLoai).addValueEventListener(new ValueEventListener() {
             @Override
@@ -139,10 +214,14 @@ public class ChiTietSanPham extends AppCompatActivity {
         });
     }
 
+    //Lấy ảnh
     private void getAnhMon(String anh) {
+        //Cắt chuỗi
         int dot = anh.lastIndexOf('.');
         String base = (dot == -1) ? anh : anh.substring(0, dot);
         String extension = (dot == -1) ? "" : anh.substring(dot + 1);
+
+        //lấy ảnh từ firebase
         try {
             final File file = File.createTempFile(base, extension);
             storage.child(anh).getFile(file)
@@ -174,5 +253,6 @@ public class ChiTietSanPham extends AppCompatActivity {
         tvMonTa = findViewById(R.id.tvMonTa);
         spnSize = findViewById(R.id.spnSize);
         tvSoLuong = findViewById(R.id.tvSoLuong);
+        btnThem = findViewById(R.id.btnThem);
     }
 }

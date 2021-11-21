@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom_7">
         <activity
-            android:name=".TrangChu"
+            android:name=".DanhGiaSanPham"
             android:exported="false" />
         <activity
             android:name=".GioHang"
@@ -22,7 +22,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".DanhGiaSanPham"
+            android:name=".TrangChu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

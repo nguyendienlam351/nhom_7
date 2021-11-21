@@ -10,13 +10,13 @@ public class SanPham {
     int gia;
     String loai;
     String moTa;
-    ArrayList<Size> size;
+    ArrayList<String> size;
     ArrayList<Float> danhGia = new ArrayList<Float>();
 
     public SanPham() {
     }
 
-    public SanPham(String maSanPham, String anh, String ten, int gia, String loai, String moTa, ArrayList<Size> size) {
+    public SanPham(String maSanPham, String anh, String ten, int gia, String loai, String moTa, ArrayList<String> size) {
         this.maSanPham = maSanPham;
         this.anh = anh;
         this.ten = ten;
@@ -74,11 +74,11 @@ public class SanPham {
         this.moTa = moTa;
     }
 
-    public ArrayList<Size> getSize() {
+    public ArrayList<String> getSize() {
         return size;
     }
 
-    public void setSize(ArrayList<Size> size) {
+    public void setSize(ArrayList<String> size) {
         this.size = size;
     }
 

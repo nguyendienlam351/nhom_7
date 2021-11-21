@@ -2,15 +2,21 @@ package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 import android.widget.Spinner;
 
 import com.example.nhom_7.adapter.SanPhamAdapter;
@@ -32,6 +38,7 @@ public class TrangChu extends AppCompatActivity {
     ArrayList<LoaiSanPham> loaiSanPhamArrayList;
     ArrayAdapter<LoaiSanPham> loaiSanPhamArrayAdapter;
     DatabaseReference database;
+    SearchView edtTimKiem;
     Spinner spnSapXep;
     Spinner spnLoai;
     int viTriLoai = 0;
@@ -40,6 +47,7 @@ public class TrangChu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trang_chu);
+
         setControl();
         setEvent();
     }
@@ -47,6 +55,7 @@ public class TrangChu extends AppCompatActivity {
     private void setEvent() {
         database = FirebaseDatabase.getInstance().getReference();
 
+        //Danh sách sản phẩm
         sanPhamArrayList = new ArrayList<SanPham>();
         sanPhamAdapter = new SanPhamAdapter(this, R.layout.layout_item_san_pham, sanPhamArrayList);
         sanPhamAdapter.setDelegation(new SanPhamAdapter.ItemClickListener() {
@@ -65,17 +74,17 @@ public class TrangChu extends AppCompatActivity {
         lvDanhSach.setAdapter(sanPhamAdapter);
         getDataSanPham();
 
+        //Spinner loại sản phẩm
         loaiSanPhamArrayList = new ArrayList<LoaiSanPham>();
         loaiSanPhamArrayAdapter = new ArrayAdapter<LoaiSanPham>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, loaiSanPhamArrayList);
         loaiSanPhamArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnLoai.setAdapter(loaiSanPhamArrayAdapter);
         getDataLoaiSanPham();
-
         spnLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 viTriLoai = position;
-                filter();
+                filter(edtTimKiem.getQuery().toString());
             }
 
             @Override
@@ -84,6 +93,7 @@ public class TrangChu extends AppCompatActivity {
             }
         });
 
+        //Spinner sắp xếp
         ArrayList<String> sapXep = new ArrayList<>();
         sapXep.add("Mới nhất");
         sapXep.add("Giá giảm dần");
@@ -92,9 +102,7 @@ public class TrangChu extends AppCompatActivity {
 
         ArrayAdapter<String> sapXepAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sapXep);
         sapXepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spnSapXep.setAdapter(sapXepAdapter);
-
         spnSapXep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -123,21 +131,21 @@ public class TrangChu extends AppCompatActivity {
                             }
                         });
                         break;
-//                    case "Yêu thích":
-//                        sanPhamAdapter.sortList(new Comparator<SanPham>() {
-//                            @Override
-//                            public int compare(SanPham o1, SanPham o2) {
-//                                if (o1.getDanhGia() > o2.getDanhGia()) {
-//                                    return -1;
-//                                }
-//                                if (o1.getDanhGia() < o2.getDanhGia()) {
-//                                    return 1;
-//                                } else {
-//                                    return 0;
-//                                }
-//                            }
-//                        });
-//                        break;
+                    case "Yêu thích":
+                        sanPhamAdapter.sortList(new Comparator<SanPham>() {
+                            @Override
+                            public int compare(SanPham o1, SanPham o2) {
+                                if (getDanhGia(o1.getDanhGia()) > getDanhGia(o2.getDanhGia())) {
+                                    return -1;
+                                }
+                                if (getDanhGia(o1.getDanhGia()) < getDanhGia(o2.getDanhGia())) {
+                                    return 1;
+                                } else {
+                                    return 0;
+                                }
+                            }
+                        });
+                        break;
                 }
 
             }
@@ -148,47 +156,37 @@ public class TrangChu extends AppCompatActivity {
             }
         });
 
-//        for(int i = 1; i < 5; i++){
-//            LoaiSanPham loaiSanPham = new LoaiSanPham();
-//            loaiSanPham.setMaLoai(database.push().getKey());
-//            loaiSanPham.setTenLoai("Loại " + i);
-//
-//            database.child("LoaiSanPham").child(loaiSanPham.getMaLoai()).setValue(loaiSanPham);
-//        }
+        //Search view tìm kiếm
+        edtTimKiem.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-//        for(int i =1 ; i < 10 ; i++){
-//            SanPham sanPham =  new SanPham();
-//            sanPham.setMaSanPham(database.push().getKey());
-//            sanPham.setTen("Sản phẩm " + i);
-//            sanPham.setLoai("Loại " + i);
-//            sanPham.setGia(i+ 10000);
-//            sanPham.setAnh("images (3).jpg");
-//            sanPham.setMoTa("Lorem Ipsum is simply dummy text of the printing and typese" +
-//                    "tting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " +
-//                    "when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
-//            ArrayList<Size> arrayList = new ArrayList<>();
-//            arrayList.add(new Size(Size.SIZE_S, i*i));
-//            arrayList.add(new Size(Size.SIZE_M, i*i));
-//            arrayList.add(new Size(Size.SIZE_L, i*i));
-//            arrayList.add(new Size(Size.SIZE_XL, i*i));
-//            sanPham.setSize(arrayList);
-//            sanPham.setDanhGia(4.0 + ((double) i/10));
-//            database.child(sanPham.getMaSanPham()).setValue(sanPham);
-//        }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
+            }
+        });
 
     }
-    private void filter(){
+
+    //Lọc danh sách sản phẩm
+    private void filter(String tenSanPham){
         String maLoai = loaiSanPhamArrayList.get(viTriLoai).getMaLoai();
         ArrayList<SanPham> filterList = new ArrayList<SanPham>();
-        for (SanPham chiTietDonHang : sanPhamArrayList) {
-            if(chiTietDonHang.getLoai().contains(maLoai)){
-                filterList.add(chiTietDonHang);
+        for (SanPham sanPham : sanPhamArrayList) {
+            if(sanPham.getLoai().contains(maLoai) && sanPham.getTen().toLowerCase().contains(tenSanPham.toLowerCase())){
+                filterList.add(sanPham);
             }
         }
 
         sanPhamAdapter.filterList(filterList);
     }
 
+
+    //Lấy dữ liệu loại sản phẩm
     private void getDataLoaiSanPham() {
         LoaiSanPham tatCa = new LoaiSanPham();
         tatCa.setTenLoai("Tất cả");
@@ -248,6 +246,8 @@ public class TrangChu extends AppCompatActivity {
         });
     }
 
+
+    //Lấy dữ liệu sản phẩm
     private void getDataSanPham() {
         database.child("SanPham").addChildEventListener(new ChildEventListener() {
             @Override
@@ -303,9 +303,20 @@ public class TrangChu extends AppCompatActivity {
         });
     }
 
+
+    //Tính điểm đánh giá
+    private float getDanhGia(ArrayList<Float> danhGiaArrayList){
+        float ratingSum = 0f;
+        for(Float r: danhGiaArrayList)  {
+            ratingSum += r;
+        }
+        return  ratingSum / danhGiaArrayList.size();
+    }
+
     private void setControl() {
         lvDanhSach = findViewById(R.id.lvDanhSach);
         spnSapXep = findViewById(R.id.spnSapXep);
         spnLoai = findViewById(R.id.spnLoai);
+        edtTimKiem = findViewById(R.id.edtTimKiem);
     }
 }

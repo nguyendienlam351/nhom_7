@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/layout"
     tools:context=".TrangChu">
+    <SearchView
+        android:id="@+id/edtTimKiem"
+        style="@style/editText"
+        android:layout_height="@dimen/iconSize"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/spacing1"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@color/white"
+        android:submitBackground="@color/white"
+        android:queryHint="search"/>
 
     <LinearLayout
         android:layout_width="match_parent"

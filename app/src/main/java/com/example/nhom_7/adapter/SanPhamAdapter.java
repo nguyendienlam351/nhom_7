@@ -80,10 +80,14 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         });
     }
 
+    //Lấy ảnh
     private void getAnh(String anh, ImageView imgMon) {
+        //Cắt chuỗi tên ảnh
         int dot = anh.lastIndexOf('.');
         String base = (dot == -1) ? anh : anh.substring(0, dot);
         String extension = (dot == -1) ? "" : anh.substring(dot + 1);
+
+        //Lấy ảnh firebase
         try {
             final File file = File.createTempFile(base, extension);
             storage.child(anh).getFile(file)
@@ -116,11 +120,14 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         return sanPhamArrayList.size();
     }
 
+
+    //Lọc sản phẩm
     public void filterList(ArrayList<SanPham> sanPhamArrayList){
         this.sanPhamArrayList = sanPhamArrayList;
         notifyDataSetChanged();
     }
 
+    //Sắp xếp sản phẩm
     public void sortList(Comparator<SanPham> sanPhamComparator){
         Collections.sort(sanPhamArrayList, sanPhamComparator);
         notifyDataSetChanged();

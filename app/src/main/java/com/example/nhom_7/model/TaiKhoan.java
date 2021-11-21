@@ -1,5 +1,7 @@
 package com.example.nhom_7.model;
 
+import java.util.ArrayList;
+
 public class TaiKhoan {
     String hoTen;
     String email;
@@ -7,6 +9,7 @@ public class TaiKhoan {
     String diaChi;
     String maKH;
     String loaiTaiKhoan;
+    ArrayList<ChiTietDH> gioHang = new ArrayList<ChiTietDH>();
 
     public TaiKhoan() {
     }
@@ -66,5 +69,13 @@ public class TaiKhoan {
 
     public void setMaKH(String maKH) {
         this.maKH = maKH;
+    }
+
+    public ArrayList<ChiTietDH> getGioHang() {
+        return gioHang;
+    }
+
+    public void setGioHang(ArrayList<ChiTietDH> gioHang) {
+        this.gioHang = gioHang;
     }
 }

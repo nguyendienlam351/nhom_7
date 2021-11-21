@@ -10,19 +10,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nhom_7.model.LoaiSanPham;
 import com.example.nhom_7.model.SanPham;
-import com.example.nhom_7.model.Size;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -108,20 +102,28 @@ public class DanhGiaSanPham extends AppCompatActivity {
 
     }
 
+    //Lấy dữ liệu sản phẩm
     private void getDataSanPham(String maSanPham) {
         database.child("SanPham").child(maSanPham).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                sanPham = snapshot.getValue(SanPham.class);
-                tvTenSanPham.setText(sanPham.getTen());
-                NumberFormat formatter = new DecimalFormat("#,###,###");
-                tvGia.setText(formatter.format(sanPham.getGia()) + " đ");
-                tvMonTa.setText("Mô tả\n" + sanPham.getMoTa());
-                DecimalFormat decimalFormat = new DecimalFormat("##.#");
-                tvDanhGia1.setText(decimalFormat.format(getDanhGia(sanPham.getDanhGia()))+ "/5");
-                rbDanhGia1.setRating(getDanhGia(sanPham.getDanhGia()));
-                getAnhMon(sanPham.getAnh());
-                getDataLoaiSanPham(sanPham.getLoai());
+                SanPham nSanPham = snapshot.getValue(SanPham.class);
+                if(nSanPham != null) {
+                    sanPham = nSanPham;
+                    //Hiển thị dữ liệu sản phẩm
+                    tvTenSanPham.setText(sanPham.getTen());
+                    NumberFormat formatter = new DecimalFormat("#,###,###");
+                    tvGia.setText(formatter.format(sanPham.getGia()) + " đ");
+                    tvMonTa.setText("Mô tả\n" + sanPham.getMoTa());
+                    //Hiển thị đánh giá
+                    DecimalFormat decimalFormat = new DecimalFormat("##.#");
+                    tvDanhGia1.setText(decimalFormat.format(getDanhGia(sanPham.getDanhGia())) + "/5");
+                    rbDanhGia1.setRating(getDanhGia(sanPham.getDanhGia()));
+                    //Hiển thị ảnh
+                    getAnhMon(sanPham.getAnh());
+                    //Hiển thị loại sản phẩm
+                    getDataLoaiSanPham(sanPham.getLoai());
+                }
             }
 
             @Override
@@ -131,6 +133,8 @@ public class DanhGiaSanPham extends AppCompatActivity {
         });
     }
 
+
+    //Lấy dữ liệu loại sản phẩm
     private void getDataLoaiSanPham(String maLoai) {
         database.child("LoaiSanPham").child(maLoai).addValueEventListener(new ValueEventListener() {
             @Override
@@ -151,6 +155,7 @@ public class DanhGiaSanPham extends AppCompatActivity {
         });
     }
 
+    //Tính điểm đánh giá
     private float getDanhGia(ArrayList<Float> danhGiaArrayList){
         float ratingSum = 0f;
         for(Float r: danhGiaArrayList)  {
@@ -159,6 +164,7 @@ public class DanhGiaSanPham extends AppCompatActivity {
         return  ratingSum / danhGiaArrayList.size();
     }
 
+    //Lấy ảnh sản phẩm
     private void getAnhMon(String anh) {
         int dot = anh.lastIndexOf('.');
         String base = (dot == -1) ? anh : anh.substring(0, dot);

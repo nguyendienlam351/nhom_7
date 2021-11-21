@@ -16,7 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nhom_7.R;
-import com.example.nhom_7.model.ChiTietDonHang;
+import com.example.nhom_7.model.ChiTietDH;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAdapter.ChiTietDonHangViewHolder>{
     private Activity context;
     private int layoutID;
-    private ArrayList<ChiTietDonHang> chiTietDonHangArrayList;
+    private ArrayList<ChiTietDH> chiTietDHArrayList;
     private ChiTietDonHangClickListener delegation;
     private StorageReference storage;
 
@@ -40,10 +40,10 @@ public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAd
         this.delegation = delegation;
     }
 
-    public ChiTietDonHangAdapter(Activity context, int layoutID, ArrayList<ChiTietDonHang> chiTietDonHangArrayList) {
+    public ChiTietDonHangAdapter(Activity context, int layoutID, ArrayList<ChiTietDH> chiTietDHArrayList) {
         this.context = context;
         this.layoutID = layoutID;
-        this.chiTietDonHangArrayList = chiTietDonHangArrayList;
+        this.chiTietDHArrayList = chiTietDHArrayList;
         storage = FirebaseStorage.getInstance().getReference("SanPham");
     }
 
@@ -58,24 +58,24 @@ public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAd
 
     @Override
     public void onBindViewHolder(@NonNull ChiTietDonHangViewHolder holder, int position) {
-        ChiTietDonHang chiTietDonHang = chiTietDonHangArrayList.get(position);
+        ChiTietDH chiTietDH = chiTietDHArrayList.get(position);
 
-        getAnhMon(chiTietDonHang.getAnh(),holder.imgAnh);
+        getAnhMon(chiTietDH.getAnh(),holder.imgAnh);
 
-        holder.tvTen.setText(chiTietDonHang.getTen());
+        holder.tvTen.setText(chiTietDH.getTen());
 
         NumberFormat formatter = new DecimalFormat("#,###,###");
-        holder.tvGia.setText(formatter.format(chiTietDonHang.getGia()) + " đ");
+        holder.tvGia.setText(formatter.format(chiTietDH.getGia()) + " đ");
 
-        holder.tvSoLuong.setText(String.valueOf(chiTietDonHang.getSize().getSoLuong()));
+        holder.tvSoLuong.setText(String.valueOf(chiTietDH.getSoLuong()));
 
-        holder.tvSize.setText(chiTietDonHang.getSize().getTenSize());
+        holder.tvSize.setText(chiTietDH.getSize());
 
         holder.btnTang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(delegation != null){
-                    delegation.tangSoLuong(chiTietDonHang);
+                    delegation.tangSoLuong(chiTietDH);
                 }
                 else {
                     Toast.makeText(context, "you must set delegation before", Toast.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAd
             @Override
             public void onClick(View v) {
                 if(delegation != null){
-                    delegation.giamSoLuong(chiTietDonHang);
+                    delegation.giamSoLuong(chiTietDH);
                 }
                 else {
                     Toast.makeText(context, "you must set delegation before", Toast.LENGTH_SHORT).show();
@@ -99,7 +99,7 @@ public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAd
             @Override
             public void onClick(View v) {
                 if(delegation != null){
-                    delegation.iconClick(chiTietDonHang);
+                    delegation.iconClick(chiTietDH);
                 }
                 else {
                     Toast.makeText(context, "you must set delegation before", Toast.LENGTH_SHORT).show();
@@ -108,10 +108,14 @@ public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAd
         });
     }
 
+    //Lấy ảnh
     private void getAnhMon(String anh, ImageView imgMon) {
+        //Cắt chuỗi tên ảnh
         int dot = anh.lastIndexOf('.');
         String base = (dot == -1) ? anh : anh.substring(0, dot);
         String extension = (dot == -1) ? "" : anh.substring(dot + 1);
+
+        //Lấy ảnh firebase
         try {
             final File file = File.createTempFile(base, extension);
             storage.child(anh).getFile(file)
@@ -140,7 +144,7 @@ public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAd
 
     @Override
     public int getItemCount() {
-        return chiTietDonHangArrayList.size();
+        return chiTietDHArrayList.size();
     }
 
     public static class ChiTietDonHangViewHolder extends RecyclerView.ViewHolder {
@@ -166,8 +170,8 @@ public class ChiTietDonHangAdapter extends RecyclerView.Adapter<ChiTietDonHangAd
         }
     }
     public interface ChiTietDonHangClickListener{
-        public void iconClick(ChiTietDonHang chiTietDonHang);
-        public void tangSoLuong(ChiTietDonHang chiTietDonHang);
-        public void giamSoLuong(ChiTietDonHang chiTietDonHang);
+        public void iconClick(ChiTietDH chiTietDH);
+        public void tangSoLuong(ChiTietDH chiTietDH);
+        public void giamSoLuong(ChiTietDH chiTietDH);
     }
 }
