@@ -3,6 +3,7 @@ package com.example.nhom_7;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -32,6 +33,7 @@ public class DanhSachSanPham extends AppCompatActivity {
     DatabaseReference mData;
     SearchView svSearch;
     ArrayList<String> loaiSP = new ArrayList<String>();
+    int viTri = 0;
 //    CustomActionBar actionBar;
 
     @Override
@@ -90,7 +92,20 @@ public class DanhSachSanPham extends AppCompatActivity {
 //            }
 //        });
 
-        //Chuyển màn hình thêm
+        //
+        spnLoaiSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                viTri = position;
+                filter();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,10 +117,14 @@ public class DanhSachSanPham extends AppCompatActivity {
     }
 
     //Hàm lọc theo tên
-    private void filter(String search) {
+    private void filter() {
+        String stChucVu = "";
+        if (!loaiSP.get(viTri).equals("Tất cả")) {
+            stChucVu = loaiSP.get(viTri);
+        }
         ArrayList<SanPham> filterList = new ArrayList<>();
         for (SanPham sanPham : list) {
-            if (sanPham.getTen().toLowerCase().contains(search.toLowerCase())) {
+            if (sanPham.getLoai().contains(stChucVu)) {
                 filterList.add(sanPham);
             }
             adapter.filterList(filterList);

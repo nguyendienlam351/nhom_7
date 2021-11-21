@@ -206,16 +206,14 @@ public class ChiTietSanPham extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 mData = FirebaseDatabase.getInstance().getReference("SanPham");
                 String newTen = edtTenSP.getText().toString().trim();
-                String newGia = edtGiaSP.getText().toString().trim();
+                int newGia = Integer.parseInt(edtGiaSP.getText().toString().trim());
                 String newLoai = spnLoaiSP.getSelectedItem().toString();
-                String newSize = spnSizeSP.getSelectedItem().toString();
-                String newSoLuong = edtSoLuongSP.getText().toString().trim();
                 String newMoTa = edtMoTaSP.getText().toString().trim();
 
                 sanPham.setTen(newTen);
-                sanPham.setGia(Integer.parseInt(newGia));
+                sanPham.setGia(newGia);
                 sanPham.setLoai(newLoai);
-//                sanPham.setSize(newSize);
+                sanPham.setSize(sizeSP);
                 sanPham.setMoTa(newMoTa);
                 mData.child(String.valueOf(sanPham.getMaSanPham())).updateChildren(sanPham.toMap());
 
@@ -288,8 +286,7 @@ public class ChiTietSanPham extends AppCompatActivity {
                 if (nSanPham != null) {
                     sanPham = nSanPham;
                     edtTenSP.setText(sanPham.getTen());
-                    NumberFormat formatter = new DecimalFormat("#,###,###");
-                    edtGiaSP.setText("Giá: " + formatter.format(sanPham.getGia()));
+                    edtGiaSP.setText(String.valueOf(sanPham.getGia()));
                     getAnhNhanVien(sanPham.getAnh());
                     for (int i = 0; i < loaiSP.size(); i++) {
                         if (loaiSP.get(i).equals(sanPham.getLoai())) {
