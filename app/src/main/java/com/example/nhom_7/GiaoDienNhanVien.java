@@ -1,6 +1,7 @@
 package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -22,6 +23,11 @@ public class GiaoDienNhanVien extends AppCompatActivity {
         setEvent();
     }
     private void setEvent() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setTitle("7's store");
         MyViewPagerAdapterNhanVien myViewPagerAdapterNhanVien = new MyViewPagerAdapterNhanVien(this);
         viewPager2.setAdapter(myViewPagerAdapterNhanVien);
 

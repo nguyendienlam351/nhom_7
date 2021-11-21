@@ -32,7 +32,6 @@ public class GiaoDienDangKy extends Fragment {
     TaiKhoan taiKhoan = new TaiKhoan();
     DatabaseReference myref = FirebaseDatabase.getInstance().getReference("TaiKhoan");
     ArrayList<TaiKhoan> data = new ArrayList<TaiKhoan>();
-    CustomActionBar actionBar;
 
     @Nullable
     @Override
@@ -44,7 +43,6 @@ public class GiaoDienDangKy extends Fragment {
     }
 
     private void setEvent() {
-        actionBar.setActionBarName("Đăng kí");
         btnDangKi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +84,6 @@ public class GiaoDienDangKy extends Fragment {
         edDiaChi = view.findViewById(R.id.edDiaChi);
         btnDangKi = view.findViewById(R.id.btnDangKi);
         auth = FirebaseAuth.getInstance();
-        actionBar = view.findViewById(R.id.actionbar);
     }
     private boolean kiemtratrong(){
         boolean kiemtra = true;

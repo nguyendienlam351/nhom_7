@@ -1,6 +1,7 @@
 package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 public class ThayDoiThongTin extends AppCompatActivity {
     private EditText edHoTen, edSoDienThoai, edDiaChi;
     private Button btnLuu;
-    private CustomActionBar actionBar;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TaiKhoan/"+user.getUid());
 
@@ -36,7 +36,11 @@ public class ThayDoiThongTin extends AppCompatActivity {
     }
 
     private void setEvent() {
-        actionBar.setActionBarName("Thay đổi thông tin");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setTitle("7's store");
         getUserInfo();
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +82,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
         edSoDienThoai = findViewById(R.id.edSoDienThoai);
         edDiaChi = findViewById(R.id.edDiaChi);
         btnLuu = findViewById(R.id.btnLuu);
-        actionBar = findViewById(R.id.actionbar);
     }
     private void getUserInfo(){
         reference.addValueEventListener(new ValueEventListener() {

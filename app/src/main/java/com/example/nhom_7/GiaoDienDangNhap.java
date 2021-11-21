@@ -30,7 +30,6 @@ public class GiaoDienDangNhap extends Fragment {
     private Button btnQuenmk,btnDangNhap;
     private EditText edMatkhau,edTaikhoan;
     private FirebaseAuth mAuth;
-    CustomActionBar actionBar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class GiaoDienDangNhap extends Fragment {
     }
 
     private void setEvent() {
-        actionBar.setActionBarName("Đăng nhập");
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +112,6 @@ public class GiaoDienDangNhap extends Fragment {
         edMatkhau = view.findViewById(R.id.edMatKhau);
         edTaikhoan = view.findViewById(R.id.edTenDN);
         mAuth = FirebaseAuth.getInstance();
-        actionBar = view.findViewById(R.id.actionbar);
     }
     private void quenmk()  {
         QuenMatKhauDialog.FullNameListener listener = new QuenMatKhauDialog.FullNameListener() {

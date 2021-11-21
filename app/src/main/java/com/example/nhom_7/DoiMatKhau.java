@@ -1,6 +1,7 @@
 package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class DoiMatKhau extends AppCompatActivity {
     private EditText edMatKhauCu, edMatKhauMoi, edXacNhanMK;
     private Button btnThayDoi;
-    private CustomActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,11 @@ public class DoiMatKhau extends AppCompatActivity {
     }
 
     private void setEvent() {
-        actionBar.setActionBarName("Đổi mật khẩu");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setTitle("7's store");
         btnThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +126,5 @@ public class DoiMatKhau extends AppCompatActivity {
         edMatKhauMoi = findViewById(R.id.edMatKhauMoi);
         edXacNhanMK = findViewById(R.id.edXacNhanMKMoi);
         btnThayDoi = findViewById(R.id.btnThayDoi);
-        actionBar = findViewById(R.id.actionbar);
     }
 }

@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ThongTinNhanVien extends Fragment {
-    private CustomActionBar actionBar;
     private TextView tvTenUser;
     private Button btnThongTinUser, btnDangXuat, btnDoiMatKhau;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class ThongTinNhanVien extends Fragment {
     }
 
     private void setEvent() {
-        actionBar.setActionBarName("Thông tin cá nhân");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TaiKhoan/"+user.getUid());
         reference.addValueEventListener(new ValueEventListener() {
@@ -74,7 +72,6 @@ public class ThongTinNhanVien extends Fragment {
 
 
     private void setControl(View view) {
-        actionBar = view.findViewById(R.id.actionbar);
         btnThongTinUser = view.findViewById(R.id.btnThayDoiInfo);
         btnDangXuat = view.findViewById(R.id.btnDangXuat);
         btnDoiMatKhau = view.findViewById(R.id.btnDoiMatKhau);

@@ -2,6 +2,7 @@ package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -29,7 +30,6 @@ public class ThemNhanVien extends AppCompatActivity {
     Button btnDangKi;
     ArrayList<TaiKhoan> data = new ArrayList<TaiKhoan>();
     FirebaseAuth auth;
-    CustomActionBar actionBar;
     TaiKhoan taiKhoan = new TaiKhoan();
     DatabaseReference myref = FirebaseDatabase.getInstance().getReference("TaiKhoan");
     @Override
@@ -41,7 +41,11 @@ public class ThemNhanVien extends AppCompatActivity {
     }
 
     private void setEvent() {
-        actionBar.setActionBarName("Thêm nhân viên");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setTitle("7's store");
         btnDangKi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +77,6 @@ public class ThemNhanVien extends AppCompatActivity {
     }
 
     private void setControl() {
-        actionBar = findViewById(R.id.actionbar);
         edHoTen = findViewById(R.id.edHoTen);
         edEmail = findViewById(R.id.edEmail);
         edSoDienThoai = findViewById(R.id.edSoDienThoai);

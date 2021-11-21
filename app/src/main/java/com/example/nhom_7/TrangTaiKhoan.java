@@ -3,6 +3,7 @@ package com.example.nhom_7;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -24,6 +25,11 @@ public class TrangTaiKhoan extends AppCompatActivity {
     }
 
     private void setEvent() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setTitle("7's store");
         myViewPagerAdapter = new MyViewPagerAdapter(this);
         viewPager.setAdapter(myViewPagerAdapter);
         new TabLayoutMediator(layout, viewPager, (tab, position) -> {

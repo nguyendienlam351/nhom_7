@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -22,6 +23,11 @@ public class GiaoDienKhachHang extends AppCompatActivity {
         setEvent();
     }
     private void setEvent() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setTitle("7's store");
         MyViewPagerAdapterQuanLy myViewPagerAdapterQuanLy = new MyViewPagerAdapterQuanLy(this);
         viewPager2.setAdapter(myViewPagerAdapterQuanLy);
 
