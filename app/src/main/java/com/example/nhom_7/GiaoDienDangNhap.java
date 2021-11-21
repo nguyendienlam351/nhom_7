@@ -67,6 +67,8 @@ public class GiaoDienDangNhap extends Fragment {
                                         }else if (value.compareTo("nhanvien")==0){
                                             Intent intent = new Intent(getContext(), GiaoDienNhanVien.class);
                                             startActivity(intent);
+                                        }else{
+                                            Toast.makeText(getContext(), "Tài khoản không tồn tại !", Toast.LENGTH_LONG).show();
                                         }
                                     }
 
