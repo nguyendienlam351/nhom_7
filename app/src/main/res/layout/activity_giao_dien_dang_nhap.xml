@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/avata7"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/edTenDN"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="@string/tendangnhap"
+            android:paddingLeft="20dp"
+            android:background="@drawable/boder"/>
+        <EditText
+            android:id="@+id/edMatKhau"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
+            android:hint="@string/matkhau"
+            android:inputType="textPassword"
+            android:background="@drawable/boder"/>
+        <Button
+            android:id="@+id/btnDangNhap"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/dangnhap"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cdHienmk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hienmatkhau"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/btnQuenmk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quenmatkhau"
+            android:textColor="@color/black"
+            android:layout_marginLeft="40dp"
+
+            style="?android:attr/borderlessButtonStyle"/>
+
+    </LinearLayout>
+
+</LinearLayout>

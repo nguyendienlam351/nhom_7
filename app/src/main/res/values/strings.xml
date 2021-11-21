@@ -9,4 +9,49 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="tendangnhap">Tên đăng nhập</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="hienmatkhau">Hiện mật khẩu</string>
+    <string name="quenmatkhau">Quên mật khẩu</string>
+    <string name="dangnhap">ĐĂNG NHẬP</string>
+    <string name="nhaphoten">Nhập họ tên</string>
+    <string name="nhapemail">Nhập email</string>
+    <string name="nhapmatkhau">Nhập mật khẩu</string>
+    <string name="xacnhanmatkhau">Xác nhận mật khẩu</string>
+    <string name="nhapsodienthoai">Nhập số điện thoại</string>
+    <string name="nhapdiachi">Nhập địa chỉ</string>
+    <string name="dangki">ĐĂNG KÍ</string>
+    <string name="huy">Hủy</string>
+    <string name="gui">Gửi</string>
+    <string name="loinhan">Chúng tôi sẽ gửi link đổi mật khẩu vào Email của bạn.</string>
+    <string name="nhapmail">Nhập email</string>
+    <string name="email">Email</string>
+
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="manage">Manage</string>
+    <string name="info">Info</string>
+    <string name="thaydoithongtin">Thay đổi thông tin</string>
+    <string name="doimatkhau">Đổi mật khẩu</string>
+    <string name="lichsudonhang">Lịch sử đơn hàng</string>
+    <string name="dangxuat">Đăng xuất</string>
+
+    <string name="hoten">Họ tên : </string>
+    <string name="sodienthoai">Số điện thoại : </string>
+    <string name="diachi">Địa chỉ : </string>
+    <string name="luu">Lưu</string>
+    <string name="thaydoi">Thay đổi</string>
+
+    <string name="matkhaucu">Mật khẩu hiện tại</string>
+    <string name="matkhaumoi">Mật khẩu mới</string>
+    <string name="xacnhanmkmoi">Xác nhận mật khẩu mới</string>
+
+    <string name="nhapmkcu">Nhập mật khẩu cũ</string>
+    <string name="nhapmkmoi">Nhập mật khẩu mới</string>
+    <string name="nhapmkxacnhan">Nhập lại mật khẩu mới</string>
+
+    <string name="quanlynhanvien">Quản lý nhân viên</string>
+    <string name="themnhanvien">Thêm nhân viên</string>
+
+
 </resources>

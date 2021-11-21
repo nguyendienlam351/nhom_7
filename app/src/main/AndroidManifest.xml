@@ -19,10 +19,37 @@
             android:name=".ChiTietSanPham"
             android:exported="false" />
         <activity
+            android:name=".ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".GiaoDienNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".DoiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".ThayDoiThongTin"
+            android:exported="false" />
+        <activity
+            android:name=".GiaoDienDangNhap"
+            android:exported="false" />
+        <activity
+            android:name=".GiaoDienKhachHang"
+            android:exported="false" />
+        <activity
+            android:name=".GiaoDienQuanLy"
+            android:exported="false" />
+        <activity
+            android:name=".GiaoDienDangKy"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".TrangChu"
+            android:exported="false" />
+        <activity
+            android:name=".TrangTaiKhoan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
