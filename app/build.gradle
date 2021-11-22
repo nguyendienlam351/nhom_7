@@ -61,4 +61,9 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-database'
 
+    //Import libs
+    implementation 'gun0912.ted:tedbottompicker:1.2.6'
+    //Check permission
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+
 }

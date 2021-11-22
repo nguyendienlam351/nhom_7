@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuanLyLoaiMon">
+
+<!--    <tdc.edu.vn.nhom_10.CustomView.CustomActionBar-->
+<!--        android:id="@+id/actionBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <LinearLayout style="@style/layout">
+
+        <EditText
+            android:id="@+id/edtNhapTenLoai"
+            style="@style/editText"
+            android:layout_width="match_parent"
+            android:digits="abcdefghijklmnopqrstuvwxyz0123456789ZXCVBNMASDFGHJKLQWERTYUIOP "
+            android:hint="Loại sản phẩm"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            style="@style/addButton"
+            android:layout_width="match_parent"
+            android:text="Thêm" />
+
+        <LinearLayout
+            android:id="@+id/Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnThayDoi"
+                style="@style/editButton"
+                android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="ThayDoi" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/cancelButton"
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:text="Cancel" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lvLoai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</LinearLayout>
