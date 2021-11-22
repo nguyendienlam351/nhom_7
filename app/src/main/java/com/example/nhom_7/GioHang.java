@@ -92,8 +92,8 @@ public class GioHang extends Fragment {
             public void onClick(View v) {
                 if (chiTietDHArrayList.size() != 0) {
                     AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
-                    b.setTitle("Thay đổi");
-                    b.setMessage("Bạn có muốn thay đổi?");
+                    b.setTitle("Thanh toán");
+                    b.setMessage("Bạn có muốn thanh toán?");
                     b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -108,6 +108,7 @@ public class GioHang extends Fragment {
                             donHang.setNgayDat(day + "/" + (month + 1) + "/" + year);
                             donHang.setTong(tong);
                             taiKhoan.setGioHang(null);
+                            donHang.setChiTietDonHangs(chiTietDHArrayList);
                             donHang.setTaiKhoan(taiKhoan);
                             donHang.setTrangThai("Chờ");
 
@@ -148,13 +149,11 @@ public class GioHang extends Fragment {
                 TaiKhoan nTaiKhoan = snapshot.getValue(TaiKhoan.class);
                 if (nTaiKhoan != null) {
                     taiKhoan = nTaiKhoan;
-                    if(taiKhoan.getGioHang().size() != 0) {
                         chiTietDHArrayList.clear();
                         chiTietDHArrayList.addAll(taiKhoan.getGioHang());
                         chiTietDonHangAdapter.notifyDataSetChanged();
                         //Tính tổng
                         tinhTong();
-                    }
                 }
             }
 

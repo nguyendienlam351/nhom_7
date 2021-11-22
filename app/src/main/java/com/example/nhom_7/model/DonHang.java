@@ -9,7 +9,7 @@ public class DonHang {
     String NgayDat;
     String TrangThai;
     int Tong;
-    ArrayList<ChiTietDH> chiTietDonHangs;
+    ArrayList<ChiTietDH> chiTietDonHangs = new ArrayList<>();
     TaiKhoan taiKhoan;
 
     public ArrayList<ChiTietDH> getChiTietDonHangs() {
@@ -67,4 +67,5 @@ public class DonHang {
         result.put("trangThai",TrangThai);
         return result;
     }
+
 }

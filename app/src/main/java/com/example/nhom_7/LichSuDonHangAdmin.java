@@ -2,15 +2,18 @@ package com.example.nhom_7;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nhom_7.adapter.LichSuDonHangAdminAdapter;
-import com.example.nhom_7.model.KhachHang;
 import com.example.nhom_7.model.DonHang;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,38 +23,22 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class LichSuDonHangAdmin extends AppCompatActivity {
+public class LichSuDonHangAdmin extends Fragment {
     RecyclerView lvLichSuDH;
     ArrayList<DonHang> data = new ArrayList<DonHang>();
     LichSuDonHangAdminAdapter myRecyclerViewAdapter;
     DatabaseReference database;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lich_su_don_hang_admin);
-        setConTrol();
-        setEvent();
-        //list();
-    }
-    private void list(){
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("LichSuDonHang");
-        for (int i=1;i<5;i++){
-            KhachHang khachHang = new KhachHang();
-            khachHang.setHoTen("Lê Đức Phước");
-            khachHang.setEmail("leducphuoc@gmail.com");
-            khachHang.setSDT("0522132115");
-            khachHang.setDiaChi("Hẻm 48, Bùi Thị Xuân, Quận 5, Tp. Hồ Chí Minh");
-            String maDH= mDatabase.push().getKey();
-            DonHang hoaDon = new DonHang();
-            hoaDon.setMaDH(maDH);
-            hoaDon.setNgayDat("2"+i+"/01/2021");
-            hoaDon.setTong(50000*i);
-            hoaDon.setTrangThai("Chờ");
-            hoaDon.setKhachHang(khachHang);
-            mDatabase.child(maDH).setValue(hoaDon);
 
-        }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_lich_su_don_hang_admin,container,false);
+        setConTrol(view);
+        setEvent();
+
+        return view;
     }
+
     //Lấy dữ liệu firebase
     private void getlist(){
         database= FirebaseDatabase.getInstance().getReference("LichSuDonHang");
@@ -93,7 +80,7 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
         });
     }
     private void setEvent() {
-        myRecyclerViewAdapter = new LichSuDonHangAdminAdapter(this,R.layout.layout_item_lich_su_don_hang_admin,data);
+        myRecyclerViewAdapter = new LichSuDonHangAdminAdapter(getActivity(),R.layout.layout_item_lich_su_don_hang_admin,data);
         myRecyclerViewAdapter.setDelegation(new LichSuDonHangAdminAdapter.MyItemClickListener() {
             @Override
             public void getXacNhanDonHang(DonHang lichSuDH) {
@@ -113,7 +100,7 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
 
             @Override
             public void onClick(DonHang lichSuDH) {
-                Intent intent = new Intent(LichSuDonHangAdmin.this,ChiTietDonHang.class);
+                Intent intent = new Intent(getActivity(),ChiTietDonHang.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("maDonHang", lichSuDH.getMaDH());
                 intent.putExtras(bundle);
@@ -121,13 +108,13 @@ public class LichSuDonHangAdmin extends AppCompatActivity {
             }
         });
         lvLichSuDH.setAdapter(myRecyclerViewAdapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         lvLichSuDH.setLayoutManager(layoutManager);
         getlist();
     }
 
-    private void setConTrol() {
-        lvLichSuDH=findViewById(R.id.lvLichSuDH);
+    private void setConTrol(View view) {
+        lvLichSuDH= view.findViewById(R.id.lvLichSuDH);
     }
 }

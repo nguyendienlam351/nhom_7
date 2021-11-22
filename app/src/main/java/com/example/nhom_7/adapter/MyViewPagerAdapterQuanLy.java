@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.nhom_7.DanhSachSanPham;
 import com.example.nhom_7.GioHang;
 import com.example.nhom_7.Home;
+import com.example.nhom_7.LichSuDonHangAdmin;
 import com.example.nhom_7.QuanLy;
 import com.example.nhom_7.QuanLyLoaiSanPham;
 import com.example.nhom_7.ThongTinKhachHang;
@@ -28,7 +29,7 @@ public class MyViewPagerAdapterQuanLy extends FragmentStateAdapter {
             case 1:
                 return new QuanLyLoaiSanPham();
             case 2:
-                return new GioHang();
+                return new LichSuDonHangAdmin();
             case 3:
                 return new ThongTinQuanLy();
             default:

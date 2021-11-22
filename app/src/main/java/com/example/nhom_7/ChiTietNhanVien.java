@@ -42,8 +42,6 @@ public class ChiTietNhanVien extends AppCompatActivity {
 
 
     private void setEvent() {
-//      firebaseAuth = FirebaseAuth.getInstance();
-//      User = firebaseAuth.getCurrentUser();
 
         mData = FirebaseDatabase.getInstance().getReference("TaiKhoan");
         //

@@ -53,6 +53,7 @@ public class ChiTetDonHangAdapter extends RecyclerView.Adapter<ChiTetDonHangAdap
         if(chiTietDH==null){
             return;
         }
+
         holder.tvSanPham.setText(chiTietDH.getTen());
         NumberFormat formatter = new DecimalFormat("#,###,###");
         holder.tvGia.setText(formatter.format(chiTietDH.getGia()) + " đ");

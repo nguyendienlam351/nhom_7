@@ -61,6 +61,14 @@ public class ThongTinKhachHang extends Fragment {
                 startActivity(intent);
             }
         });
+        btnLichSu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(),LichSuDonHang.class);
+                startActivity(intent);
+            }
+        });
         btnDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -30,24 +30,8 @@ public class LichSuDonHang extends AppCompatActivity {
         setContentView(R.layout.activity_lich_su_don_hang);
         setConTrol();
         setEvent();
-        //list();
     }
-        private void list(){
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("LichSuDonHang");
-        for (int i=1;i<6;i++){
-            //KhachHang khachHang = new KhachHang();
-            //khachHang.setHoTen("sđs");
-            String maDH= mDatabase.push().getKey();
-            DonHang hoaDon = new DonHang();
-            hoaDon.setMaDH(maDH);
-            hoaDon.setNgayDat("2"+i+"/01/2021");
-            hoaDon.setTong(50000*i);
-            hoaDon.setTrangThai("Chờ");
-            //hoaDon.setKhachHang(khachHang);
-            mDatabase.child(maDH).setValue(hoaDon);
 
-        }
-    }
     //Lấy dữ liệu firebase
     private void getlist(){
         database= FirebaseDatabase.getInstance().getReference("LichSuDonHang");

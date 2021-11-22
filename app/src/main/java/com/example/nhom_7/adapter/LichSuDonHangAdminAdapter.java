@@ -52,7 +52,7 @@ public class LichSuDonHangAdminAdapter extends RecyclerView.Adapter<LichSuDonHan
         holder.tvTong.setText(formatter.format(lichSuDH.getTong()) + " đ");
         holder.tvNgayDat.setText(lichSuDH.getNgayDat());
         holder.tvTrangThai.setText(lichSuDH.getTrangThai());
-        holder.tvHoTen.setText(lichSuDH.getKhachHang().getHoTen());
+        holder.tvHoTen.setText(lichSuDH.getTaiKhoan().getHoTen());
 
         holder.btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override

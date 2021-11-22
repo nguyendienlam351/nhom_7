@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="@dimen/cardview_default_elevation"
+    app:cardCornerRadius="@dimen/cardview_default_radius"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boder"
+        android:padding="@dimen/spacing3"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imvSanPham"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/tp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing4"
+            android:padding="@dimen/spacing1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSanPham"
+                android:layout_width="match_parent"
+                style="@style/text"
+                android:text="@string/SanPham1"/>
+
+            <TextView
+                android:id="@+id/tvGia"
+                android:layout_width="match_parent"
+                style="@style/text"
+                android:text="@string/Gia"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/text"
+                        android:text="@string/SoLuong"/>
+                    <TextView
+                        android:id="@+id/tvSoLuong"
+                        android:layout_width="wrap_content"
+                        style="@style/text"
+                        android:text="@string/so3"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        style="@style/text"
+                        android:text="@string/Size"/>
+                    <TextView
+                        android:id="@+id/tvSize"
+                        android:layout_width="wrap_content"
+                        style="@style/text"
+                        android:text="@string/S"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

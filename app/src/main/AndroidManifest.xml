@@ -58,16 +58,10 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".QuanLyLoaiSanPham"
-            android:exported="false" />
-        <activity
-            android:name=".TrangTaiKhoan"
-            android:exported="false" />
-        <activity
             android:name=".QuanLyNhanVien"
             android:exported="false" />
         <activity
-            android:name=".LichSuDonHangAdmin"
+            android:name=".TrangTaiKhoan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

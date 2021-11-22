@@ -3,6 +3,7 @@ package com.example.nhom_7;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 
@@ -63,15 +64,14 @@ public class QuanLyNhanVien extends AppCompatActivity {
             }
         });
 
-        //Chuyển màn hình thêm
-//        btnThem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(getApplicationContext(), ThemNhanVien.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), ThemNhanVien.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
