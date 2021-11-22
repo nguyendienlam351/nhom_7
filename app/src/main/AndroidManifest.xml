@@ -25,9 +25,6 @@
             android:name=".DanhGiaSanPham"
             android:exported="false" />
         <activity
-            android:name=".GioHang"
-            android:exported="false" />
-        <activity
             android:name=".XemChiTietSanPham"
             android:exported="false" />
         <activity
@@ -52,13 +49,10 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".TrangChu"
+            android:name=".QuanLyLoaiSanPham"
             android:exported="false" />
         <activity
             android:name=".TrangTaiKhoan"
-            android:exported="false" />
-        <activity
-            android:name=".QuanLyLoaiSanPham"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

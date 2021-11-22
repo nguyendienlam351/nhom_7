@@ -53,12 +53,6 @@
                     android:text="Sản phẩm 1" />
 
                 <TextView
-                    android:id="@+id/tvLoaiSP"
-                    style="@style/text"
-                    android:layout_width="match_parent"
-                    android:text="Loại sản phẩm" />
-
-                <TextView
                     android:id="@+id/tvGiaSP"
                     style="@style/text"
                     android:layout_width="match_parent"

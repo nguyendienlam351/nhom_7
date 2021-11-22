@@ -1,4 +1,4 @@
-package com.example.nhom_7;
+package com.example.nhom_7.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,15 +8,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nhom_7.ChiTietSanPham;
+import com.example.nhom_7.R;
+import com.example.nhom_7.model.SanPham;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -33,18 +34,11 @@ public class AdapterSanPham extends RecyclerView.Adapter<AdapterSanPham.MyViewHo
     Activity conText;
     int layoutID;
     ArrayList<SanPham> data;
-    private MyItemClickListener delegation;
-
-    public void setDelegation(MyItemClickListener delegation) {
-        this.delegation = delegation;
-    }
-
 
     public AdapterSanPham(Activity conText, int layoutID, ArrayList<SanPham> data) {
         this.data = data;
         this.layoutID = layoutID;
         this.conText = conText;
-//        storage = FirebaseStorage.getInstance().getReference("SanPham");
 
     }
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -63,7 +57,6 @@ public class AdapterSanPham extends RecyclerView.Adapter<AdapterSanPham.MyViewHo
         SanPham sanPham = data.get(position);
         getAnhSP(sanPham.getAnh(),holder.imgAnhSP);
         holder.tvTenSP.setText(sanPham.getTen());
-        holder.tvLoaiSP.setText(sanPham.getLoai());
         NumberFormat formatter = new DecimalFormat("#,###,###");
         holder.tvGiaSP.setText(formatter.format(sanPham.getGia()) + " đ");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -122,20 +115,15 @@ public class AdapterSanPham extends RecyclerView.Adapter<AdapterSanPham.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTenSP, tvLoaiSP, tvGiaSP;
+        TextView tvTenSP, tvGiaSP;
         ImageView imgAnhSP;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAnhSP = itemView.findViewById(R.id.imgAnhSP);
             tvTenSP = itemView.findViewById(R.id.tvTenSP);
-            tvLoaiSP = itemView.findViewById(R.id.tvLoaiSP);
             tvGiaSP = itemView.findViewById(R.id.tvGiaSP);
         }
-    }
-
-    public interface MyItemClickListener {
-        void getThongTinDMK(SanPham sanPham);
     }
 
 }

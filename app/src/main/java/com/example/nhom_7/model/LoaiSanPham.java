@@ -1,5 +1,8 @@
 package com.example.nhom_7.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoaiSanPham {
     String maLoai;
     String tenLoai;
@@ -21,6 +24,12 @@ public class LoaiSanPham {
 
     public void setTenLoai(String tenLoai) {
         this.tenLoai = tenLoai;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("tenLoai", tenLoai);
+        return result;
     }
 
     @Override

@@ -27,6 +27,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nhom_7.model.SanPham;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -59,9 +60,9 @@ public class ChiTietSanPham extends AppCompatActivity {
 //    CustomActionBar actionBar;
     Button btnThayDoi, btnXoa, btnThem;
     ArrayList<String> loaiSP = new ArrayList<String>();
-    ArrayList<Size> sizeSP = new ArrayList<Size>();
+//    ArrayList<Size> sizeSP = new ArrayList<Size>();
     SanPham sanPham;
-    ArrayAdapter<Size> arrayAdapterSizeSP;
+//    ArrayAdapter<Size> arrayAdapterSizeSP;
     int sSize;
 
     @Override
@@ -100,23 +101,23 @@ public class ChiTietSanPham extends AppCompatActivity {
         arrayAdapterLoaiSP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnLoaiSP.setAdapter(arrayAdapterLoaiSP);
         //
-        arrayAdapterSizeSP = new ArrayAdapter<Size>(this, android.R.layout.simple_spinner_item, sizeSP);
-        arrayAdapterSizeSP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnSizeSP.setAdapter(arrayAdapterSizeSP);
-        //
-        spnSizeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sSize = position;
-                edtSoLuongSP.setText(String.valueOf(sizeSP.get(sSize).getSoLuong()));
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        arrayAdapterSizeSP = new ArrayAdapter<Size>(this, android.R.layout.simple_spinner_item, sizeSP);
+//        arrayAdapterSizeSP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spnSizeSP.setAdapter(arrayAdapterSizeSP);
+//        //
+//        spnSizeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                sSize = position;
+//                edtSoLuongSP.setText(String.valueOf(sizeSP.get(sSize).getSoLuong()));
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
         //
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -142,9 +143,9 @@ public class ChiTietSanPham extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Size size = new Size(sizeSP.get(sSize).getTenSize(),Integer.parseInt(edtSoLuongSP.getText().toString()));
-                sizeSP.set(sSize,size);
-                arrayAdapterSizeSP.notifyDataSetChanged();
+//                Size size = new Size(sizeSP.get(sSize).getTenSize(),Integer.parseInt(edtSoLuongSP.getText().toString()));
+//                sizeSP.set(sSize,size);
+//                arrayAdapterSizeSP.notifyDataSetChanged();
             }
         });
         //Chọn hình ảnh
@@ -213,9 +214,9 @@ public class ChiTietSanPham extends AppCompatActivity {
                 sanPham.setTen(newTen);
                 sanPham.setGia(newGia);
                 sanPham.setLoai(newLoai);
-                sanPham.setSize(sizeSP);
+//                sanPham.setSize(sizeSP);
                 sanPham.setMoTa(newMoTa);
-                mData.child(String.valueOf(sanPham.getMaSanPham())).updateChildren(sanPham.toMap());
+//                mData.child(String.valueOf(sanPham.getMaSanPham())).updateChildren(sanPham.toMap());
 
                 updateImage();
                 Intent intent = new Intent(getApplicationContext(), DanhSachSanPham.class);
@@ -293,8 +294,8 @@ public class ChiTietSanPham extends AppCompatActivity {
                             spnLoaiSP.setSelection(i);
                         }
                     }
-                    sizeSP.addAll(sanPham.getSize());
-                    arrayAdapterSizeSP.notifyDataSetChanged();
+//                    sizeSP.addAll(sanPham.getSize());
+//                    arrayAdapterSizeSP.notifyDataSetChanged();
                     edtMoTaSP.setText(sanPham.getMoTa());
                 }
             }

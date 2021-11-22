@@ -7,13 +7,17 @@
     android:orientation="vertical"
     tools:context=".DanhSachSanPham">
 
-<!--    <tdc.edu.vn.nhom_10.CustomView.CustomActionBar-->
-<!--        android:id="@+id/actionBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
-
     <LinearLayout
         style="@style/layout">
+        <SearchView
+            android:id="@+id/svSearch"
+            style="@style/editText"
+            android:layout_height="@dimen/iconSize"
+            android:layout_width="match_parent"
+            android:iconifiedByDefault="false"
+            android:queryBackground="@color/white"
+            android:submitBackground="@color/white"
+            android:queryHint="search"/>
 
         <LinearLayout
             android:layout_width="match_parent"

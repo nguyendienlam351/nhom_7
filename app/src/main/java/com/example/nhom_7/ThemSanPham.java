@@ -26,6 +26,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nhom_7.model.SanPham;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,9 +57,9 @@ public class ThemSanPham extends AppCompatActivity {
     Button btnThem, btnThayDoi;
     DatabaseReference mData;
     ArrayList<String> loaiSP = new ArrayList<String>();
-    ArrayList<Size> sizeSP = new ArrayList<Size>();
+//    ArrayList<Size> sizeSP = new ArrayList<Size>();
     SanPham sanPham;
-    ArrayAdapter<Size> arrayAdapterSizeSP;
+//    ArrayAdapter<Size> arrayAdapterSizeSP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +75,6 @@ public class ThemSanPham extends AppCompatActivity {
     StorageReference storageRef = storage.getReference("SanPham");
 
     private void setEvent() {
-//        actionBar.setDelegation(new CustomActionBar.ActionBarDelegation() {
-//            @Override
-//            public void backOnClick() {
-//                finish();
-//            }
-//        });
-//
-//        actionBar.setActionBarName("Thêm nhân viên");
-        //
         loaiSP.add("Quần tây");
         loaiSP.add("Quần đùi");
         loaiSP.add("Áo thun");
@@ -91,19 +83,19 @@ public class ThemSanPham extends AppCompatActivity {
         arrayAdapterLoaiSP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnLoaiSP.setAdapter(arrayAdapterLoaiSP);
         //
-        sizeSP.add(new Size(Size.SIZE_S, 0));
-        sizeSP.add(new Size(Size.SIZE_M, 0));
-        sizeSP.add(new Size(Size.SIZE_L, 0));
-        sizeSP.add(new Size(Size.SIZE_XL, 0));
-        arrayAdapterSizeSP = new ArrayAdapter<Size>(this, android.R.layout.simple_spinner_item, sizeSP);
-        arrayAdapterSizeSP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnSizeSP.setAdapter(arrayAdapterSizeSP);
+//        sizeSP.add(new Size(Size.SIZE_S, 0));
+//        sizeSP.add(new Size(Size.SIZE_M, 0));
+//        sizeSP.add(new Size(Size.SIZE_L, 0));
+//        sizeSP.add(new Size(Size.SIZE_XL, 0));
+//        arrayAdapterSizeSP = new ArrayAdapter<Size>(this, android.R.layout.simple_spinner_item, sizeSP);
+//        arrayAdapterSizeSP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spnSizeSP.setAdapter(arrayAdapterSizeSP);
 
         spnSizeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sSize = position;
-                edtSoLuongSP.setText(String.valueOf(sizeSP.get(sSize).getSoLuong()));
+//                edtSoLuongSP.setText(String.valueOf(sizeSP.get(sSize).getSoLuong()));
 
             }
 
@@ -130,7 +122,7 @@ public class ThemSanPham extends AppCompatActivity {
                 String MoTaSP = edtMoTaSP.getText().toString().trim();
                 String MaSP = mData.push().getKey();
                 String AnhSP = MaSP + ".png";
-                SanPham sanPham = new SanPham(MaSP, AnhSP, TenSP, GiaSP, LoaiSP, MoTaSP, sizeSP);
+//                SanPham sanPham = new SanPham(MaSP, AnhSP, TenSP, GiaSP, LoaiSP, MoTaSP, sizeSP);
                 sanPham.setMaSanPham(MaSP);
                 mData.child("SanPham").child(MaSP).setValue(sanPham);
 
@@ -165,9 +157,9 @@ public class ThemSanPham extends AppCompatActivity {
         btnThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Size size = new Size(sizeSP.get(sSize).getTenSize(),Integer.parseInt(edtSoLuongSP.getText().toString()));
-                sizeSP.set(sSize,size);
-                arrayAdapterSizeSP.notifyDataSetChanged();
+//                Size size = new Size(sizeSP.get(sSize).getTenSize(),Integer.parseInt(edtSoLuongSP.getText().toString()));
+//                sizeSP.set(sSize,size);
+//                arrayAdapterSizeSP.notifyDataSetChanged();
             }
         });
         //Chọn hình ảnh

@@ -148,11 +148,13 @@ public class GioHang extends Fragment {
                 TaiKhoan nTaiKhoan = snapshot.getValue(TaiKhoan.class);
                 if (nTaiKhoan != null) {
                     taiKhoan = nTaiKhoan;
-                    chiTietDHArrayList.clear();
-                    chiTietDHArrayList.addAll(taiKhoan.getGioHang());
-                    chiTietDonHangAdapter.notifyDataSetChanged();
-                    //Tính tổng
-                    tinhTong();
+                    if(taiKhoan.getGioHang().size() != 0) {
+                        chiTietDHArrayList.clear();
+                        chiTietDHArrayList.addAll(taiKhoan.getGioHang());
+                        chiTietDonHangAdapter.notifyDataSetChanged();
+                        //Tính tổng
+                        tinhTong();
+                    }
                 }
             }
 

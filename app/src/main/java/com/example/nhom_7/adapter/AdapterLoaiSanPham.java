@@ -1,4 +1,4 @@
-package com.example.nhom_7;
+package com.example.nhom_7.adapter;
 
 
 import android.app.Activity;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.nhom_7.R;
+import com.example.nhom_7.model.LoaiSanPham;
 
 import java.util.ArrayList;
 
