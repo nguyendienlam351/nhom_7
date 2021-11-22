@@ -1,14 +1,18 @@
 package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -18,6 +22,8 @@ import com.example.nhom_7.model.DonHang;
 import com.example.nhom_7.model.TaiKhoan;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +35,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class GioHang extends AppCompatActivity {
+public class GioHang extends Fragment {
     RecyclerView lvDanhSachSanPham;
     Button btnThanhToan;
     ChiTietDonHangAdapter chiTietDonHangAdapter;
@@ -38,22 +44,23 @@ public class GioHang extends AppCompatActivity {
     ArrayList<ChiTietDH> chiTietDHArrayList;
     int tong;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gio_hang);
-
-        setControl();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_gio_hang,container,false);
+        setControl(view);
         setEvent();
+        return view;
     }
 
     private void setEvent() {
         chiTietDHArrayList = new ArrayList<ChiTietDH>();
         database = FirebaseDatabase.getInstance().getReference();
 
-        getDataDonHang("8PnGpfFjB3Z6evSiAzDp9Xzwy7y2");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        getDataDonHang(user.getUid());
 
-        chiTietDonHangAdapter = new ChiTietDonHangAdapter(GioHang.this, R.layout.layout_item_chi_tiet_don_hang, chiTietDHArrayList);
+        chiTietDonHangAdapter = new ChiTietDonHangAdapter(getActivity(), R.layout.layout_item_chi_tiet_don_hang, chiTietDHArrayList);
         chiTietDonHangAdapter.setDelegation(new ChiTietDonHangAdapter.ChiTietDonHangClickListener() {
             @Override
             public void iconClick(ChiTietDH chiTietDH) {
@@ -75,7 +82,7 @@ public class GioHang extends AppCompatActivity {
                 }
             }
         });
-        LinearLayoutManager layoutManager = new LinearLayoutManager(GioHang.this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         lvDanhSachSanPham.setLayoutManager(layoutManager);
         lvDanhSachSanPham.setAdapter(chiTietDonHangAdapter);
@@ -84,7 +91,7 @@ public class GioHang extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (chiTietDHArrayList.size() != 0) {
-                    AlertDialog.Builder b = new AlertDialog.Builder(GioHang.this);
+                    AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
                     b.setTitle("Thay đổi");
                     b.setMessage("Bạn có muốn thay đổi?");
                     b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
@@ -110,14 +117,14 @@ public class GioHang extends AppCompatActivity {
                                     database.child("TaiKhoan").child(String.valueOf(taiKhoan.getMaKH())).child("gioHang").removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(GioHang.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), "Thanh toán thành công", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(GioHang.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -127,7 +134,7 @@ public class GioHang extends AppCompatActivity {
                     b.show();
 
                 } else {
-                    Toast.makeText(GioHang.this, "Hãy chọn thêm sản phẩm", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Hãy chọn thêm sản phẩm", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -168,8 +175,8 @@ public class GioHang extends AppCompatActivity {
         btnThanhToan.setText("Thanh toán: " + formatter.format(tong) + " đ");
     }
 
-    private void setControl() {
-        lvDanhSachSanPham = findViewById(R.id.lvDanhSachSanPham);
-        btnThanhToan = findViewById(R.id.btnThanhToan);
+    private void setControl(View view) {
+        lvDanhSachSanPham = view.findViewById(R.id.lvDanhSachSanPham);
+        btnThanhToan = view.findViewById(R.id.btnThanhToan);
     }
 }

@@ -9,12 +9,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.nhom_7.adapter.MyViewPagerAdapterKhachHang;
 import com.example.nhom_7.adapter.MyViewPagerAdapterQuanLy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class GiaoDienKhachHang extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +30,8 @@ public class GiaoDienKhachHang extends AppCompatActivity {
         actionBar.setLogo(R.drawable.logo);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setTitle("7's store");
-        MyViewPagerAdapterQuanLy myViewPagerAdapterQuanLy = new MyViewPagerAdapterQuanLy(this);
-        viewPager2.setAdapter(myViewPagerAdapterQuanLy);
+        MyViewPagerAdapterKhachHang myViewPagerAdapterKhachHang = new MyViewPagerAdapterKhachHang(this);
+        viewPager2.setAdapter(myViewPagerAdapterKhachHang);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -56,10 +58,10 @@ public class GiaoDienKhachHang extends AppCompatActivity {
                         viewPager2.setCurrentItem(0);
                         break;
                     case R.id.action_cart:
-                        viewPager2.setCurrentItem(2);
+                        viewPager2.setCurrentItem(1);
                         break;
                     case R.id.action_info:
-                        viewPager2.setCurrentItem(3);
+                        viewPager2.setCurrentItem(2);
                         break;
                 }
                 return true;

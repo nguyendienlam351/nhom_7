@@ -22,6 +22,8 @@ import com.example.nhom_7.model.SanPham;
 import com.example.nhom_7.model.TaiKhoan;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class ChiTietSanPham extends AppCompatActivity {
+public class XemChiTietSanPham extends AppCompatActivity {
     ImageView imgSanPham;
     TextView tvTenSanPham;
     TextView tvLoaiSanPham;
@@ -58,7 +60,7 @@ public class ChiTietSanPham extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chi_tiet_san_pham);
+        setContentView(R.layout.activity_xem_chi_tiet_san_pham);
 
         setControl();
         setEvent();
@@ -75,7 +77,8 @@ public class ChiTietSanPham extends AppCompatActivity {
             getDataSanPham(maSanPham);
         }
 
-        getDataGioHang("8PnGpfFjB3Z6evSiAzDp9Xzwy7y2");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        getDataGioHang(user.getUid());
 
         //Spinner size sản phẩm
         sizeArrayList = new ArrayList<String>();
@@ -103,12 +106,11 @@ public class ChiTietSanPham extends AppCompatActivity {
                     database.child("TaiKhoan").child(taiKhoan.getMaKH()).child("gioHang").setValue(taiKhoan.getGioHang()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Intent intent = new Intent(ChiTietSanPham.this, GioHang.class);
-                            startActivity(intent);
+                            Toast.makeText(XemChiTietSanPham.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
-                    Toast.makeText(ChiTietSanPham.this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(XemChiTietSanPham.this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
                 }
             }
         });

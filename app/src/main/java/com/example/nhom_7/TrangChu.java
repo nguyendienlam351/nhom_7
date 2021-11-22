@@ -2,18 +2,15 @@ package com.example.nhom_7;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
@@ -31,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class TrangChu extends AppCompatActivity {
+public class TrangChu extends Fragment {
     RecyclerView lvDanhSach;
     ArrayList<SanPham> sanPhamArrayList;
     SanPhamAdapter sanPhamAdapter;
@@ -43,13 +40,14 @@ public class TrangChu extends AppCompatActivity {
     Spinner spnLoai;
     int viTriLoai = 0;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trang_chu);
-
-        setControl();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_trang_chu,container,false);
+        setControl(view);
         setEvent();
+
+        return view;
     }
 
     private void setEvent() {
@@ -57,18 +55,18 @@ public class TrangChu extends AppCompatActivity {
 
         //Danh sách sản phẩm
         sanPhamArrayList = new ArrayList<SanPham>();
-        sanPhamAdapter = new SanPhamAdapter(this, R.layout.layout_item_san_pham, sanPhamArrayList);
+        sanPhamAdapter = new SanPhamAdapter(getActivity(), R.layout.layout_item_san_pham, sanPhamArrayList);
         sanPhamAdapter.setDelegation(new SanPhamAdapter.ItemClickListener() {
             @Override
             public void itemClick(SanPham sanPham) {
-                Intent intent = new Intent(TrangChu.this, ChiTietSanPham.class);
+                Intent intent = new Intent(getActivity(), XemChiTietSanPham.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("maSanPham", sanPham.getMaSanPham());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         lvDanhSach.setLayoutManager(layoutManager);
         lvDanhSach.setAdapter(sanPhamAdapter);
@@ -76,7 +74,7 @@ public class TrangChu extends AppCompatActivity {
 
         //Spinner loại sản phẩm
         loaiSanPhamArrayList = new ArrayList<LoaiSanPham>();
-        loaiSanPhamArrayAdapter = new ArrayAdapter<LoaiSanPham>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, loaiSanPhamArrayList);
+        loaiSanPhamArrayAdapter = new ArrayAdapter<LoaiSanPham>(getActivity(), android.R.layout.simple_spinner_dropdown_item, loaiSanPhamArrayList);
         loaiSanPhamArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnLoai.setAdapter(loaiSanPhamArrayAdapter);
         getDataLoaiSanPham();
@@ -100,7 +98,7 @@ public class TrangChu extends AppCompatActivity {
         sapXep.add("Giá tăng dần");
         sapXep.add("Yêu thích");
 
-        ArrayAdapter<String> sapXepAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sapXep);
+        ArrayAdapter<String> sapXepAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sapXep);
         sapXepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSapXep.setAdapter(sapXepAdapter);
         spnSapXep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -313,10 +311,10 @@ public class TrangChu extends AppCompatActivity {
         return  ratingSum / danhGiaArrayList.size();
     }
 
-    private void setControl() {
-        lvDanhSach = findViewById(R.id.lvDanhSach);
-        spnSapXep = findViewById(R.id.spnSapXep);
-        spnLoai = findViewById(R.id.spnLoai);
-        edtTimKiem = findViewById(R.id.edtTimKiem);
+    private void setControl(View view) {
+        lvDanhSach = view.findViewById(R.id.lvDanhSach);
+        spnSapXep = view.findViewById(R.id.spnSapXep);
+        spnLoai = view.findViewById(R.id.spnLoai);
+        edtTimKiem = view.findViewById(R.id.edtTimKiem);
     }
 }

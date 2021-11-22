@@ -16,7 +16,7 @@
             android:name=".GioHang"
             android:exported="false" />
         <activity
-            android:name=".ChiTietSanPham"
+            android:name=".XemChiTietSanPham"
             android:exported="false" />
         <activity
             android:name=".ThemNhanVien"
@@ -31,16 +31,10 @@
             android:name=".ThayDoiThongTin"
             android:exported="false" />
         <activity
-            android:name=".GiaoDienDangNhap"
-            android:exported="false" />
-        <activity
             android:name=".GiaoDienKhachHang"
             android:exported="false" />
         <activity
             android:name=".GiaoDienQuanLy"
-            android:exported="false" />
-        <activity
-            android:name=".GiaoDienDangKy"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
