@@ -55,7 +55,7 @@ public class GiaoDienDangKy extends Fragment {
                             if (task.isSuccessful()){
                                 taiKhoan.setHoTen(edHoTen.getText().toString());
                                 taiKhoan.setEmail(edEmail.getText().toString());
-                                taiKhoan.setSoDienThoai(Integer.parseInt(edSoDienThoai.getText().toString()));
+                                taiKhoan.setSoDienThoai(edSoDienThoai.getText().toString());
                                 taiKhoan.setDiaChi(edDiaChi.getText().toString());
                                 taiKhoan.setLoaiTaiKhoan("khachhang");
                                 taiKhoan.setMaKH(auth.getUid());

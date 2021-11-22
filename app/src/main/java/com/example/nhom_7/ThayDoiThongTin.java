@@ -61,7 +61,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                 taiKhoan.setMaKH(user.getUid());
                 taiKhoan.setLoaiTaiKhoan("khachhang");
                 taiKhoan.setHoTen(edHoTen.getText().toString());
-                taiKhoan.setSoDienThoai(Integer.parseInt(edSoDienThoai.getText().toString()));
+                taiKhoan.setSoDienThoai(edSoDienThoai.getText().toString());
                 taiKhoan.setDiaChi(edDiaChi.getText().toString());
                 taiKhoan.setEmail(user.getEmail());
                 reference.setValue(taiKhoan);
