@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TaiKhoan {
     String hoTen;
     String email;
-    int soDienThoai;
+    String soDienThoai;
     String diaChi;
     String maKH;
     String loaiTaiKhoan;
@@ -14,7 +14,7 @@ public class TaiKhoan {
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String hoTen, String email, int soDienThoai, String diaChi, String maKH, String loaiTaiKhoan) {
+    public TaiKhoan(String hoTen, String email, String soDienThoai, String diaChi, String maKH, String loaiTaiKhoan) {
         this.hoTen = hoTen;
         this.email = email;
         this.soDienThoai = soDienThoai;
@@ -47,11 +47,11 @@ public class TaiKhoan {
         this.email = email;
     }
 
-    public int getSoDienThoai() {
+    public String getSoDienThoai() {
         return soDienThoai;
     }
 
-    public void setSoDienThoai(int soDienThoai) {
+    public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
 

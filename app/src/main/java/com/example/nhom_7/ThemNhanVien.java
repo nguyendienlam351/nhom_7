@@ -58,7 +58,7 @@ public class ThemNhanVien extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 taiKhoan.setHoTen(edHoTen.getText().toString());
                                 taiKhoan.setEmail(edEmail.getText().toString());
-                                taiKhoan.setSoDienThoai(Integer.parseInt(edSoDienThoai.getText().toString()));
+                                taiKhoan.setSoDienThoai(edSoDienThoai.getText().toString());
                                 taiKhoan.setDiaChi(edDiaChi.getText().toString());
                                 taiKhoan.setLoaiTaiKhoan("nhanvien");
                                 taiKhoan.setMaKH(auth.getUid());
