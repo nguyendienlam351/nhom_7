@@ -1,13 +1,10 @@
 package com.example.nhom_7;
 
-import static com.example.nhom_7.model.Size.SIZE_S;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +13,6 @@ import com.example.nhom_7.adapter.ChiTetDonHangAdapter;
 import com.example.nhom_7.model.ChiTietDH;
 import com.example.nhom_7.model.DonHang;
 import com.example.nhom_7.model.KhachHang;
-import com.example.nhom_7.model.Size;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,17 +41,15 @@ public class ChiTietDonHang extends AppCompatActivity {
     private void list(){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("LichSuDonHang");
         for (int i=1;i<3;i++){
-            Size size = new Size();
-            size.setSoLuong(2);
-            size.setTenSize(SIZE_S);
 
             ArrayList<ChiTietDH> chiTietDHS = new ArrayList<>();
-            for (int j=1;j<5;j++){
+            for (int j=1;j<3;j++){
                 ChiTietDH chiTietDH = new ChiTietDH();
                 chiTietDH.setAnh("images (3).jpg");
                 chiTietDH.setTen("Ao so mi");
                 chiTietDH.setGia(120000);
-                chiTietDH.setSize(size);
+                chiTietDH.setSize("S");
+                chiTietDH.setSoLuong(2);
                 chiTietDHS.add(chiTietDH);
             }
 

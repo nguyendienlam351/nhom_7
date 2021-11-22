@@ -41,7 +41,7 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         NhanVien nhanVien = datanhanVien.get(position);
         holder.tvHoTen.setText(nhanVien.getHoTen());
-        holder.tvSDT.setText(String.valueOf(nhanVien.getSoDienThoai()));
+        holder.tvSDT.setText(nhanVien.getSoDienThoai());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

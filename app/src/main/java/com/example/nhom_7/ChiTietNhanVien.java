@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,16 +78,51 @@ public class ChiTietNhanVien extends AppCompatActivity {
         btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDiaLogUpdateItem(nhanVien);
+                mData.orderByChild("soDienThoai").equalTo(edtSDT.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            edtSDT.setError("Số điện thoại đã tồn tại !");
+                        }else{
+                            if(kiemtratrong() == true){
+                                openDiaLogUpdateItem(nhanVien);
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
-
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDiaLogDelete(nhanVien);
             }
         });
+    }
+    //kiểm tra trống
+    private boolean kiemtratrong (){
+        boolean kiemtra = true;
+        if (edtHoTen.getText().toString().trim().length() == 0){
+            edtHoTen.setError("Nhập họ tên nhân viên !");
+            kiemtra = false;
+        }
+        if (edtEmail.getText().toString().trim().length() == 0){
+            edtEmail.setError("Nhập email !");
+            kiemtra = false;
+        }
+        if (edtSDT.getText().toString().trim().length() == 0){
+            edtSDT.setError("Nhập số điện thoại !");
+            kiemtra = false;
+        }
+        if (edtDiaChi.getText().toString().trim().length() == 0){
+            edtDiaChi.setError("Nhập địa chỉ !");
+            kiemtra = false;
+        }
+        return kiemtra;
     }
     //Hàm update
     private void openDiaLogUpdateItem(NhanVien nhanVien) {
@@ -96,7 +133,7 @@ public class ChiTietNhanVien extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String newHoTen = edtHoTen.getText().toString().trim();
-                int newSDT = Integer.parseInt(edtSDT.getText().toString());
+                String newSDT = edtSDT.getText().toString();
                 String newEmail = edtEmail.getText().toString().trim();
                 String newDiaChi = edtDiaChi.getText().toString().trim();
 

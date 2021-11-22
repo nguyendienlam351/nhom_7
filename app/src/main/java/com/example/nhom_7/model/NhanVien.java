@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class NhanVien {
     String hoTen;
-    int soDienThoai;
+    String soDienThoai;
     String email;
     String diaChi;
     String loaiTaiKhoan;
@@ -14,7 +14,7 @@ public class NhanVien {
     public NhanVien() {
       //Mặc định của firebase, khi nhận data
     }
-    public NhanVien(String hoTen, int soDienThoai, String email, String diaChi, String loaiTaiKhoan, String maKH) {
+    public NhanVien(String hoTen, String soDienThoai, String email, String diaChi, String loaiTaiKhoan, String maKH) {
         this.hoTen = hoTen;
         this.soDienThoai = soDienThoai;
         this.email = email;
@@ -23,11 +23,11 @@ public class NhanVien {
         this.maKH = maKH;
     }
 
-    public int getSoDienThoai() {
+    public String getSoDienThoai() {
         return soDienThoai;
     }
 
-    public void setSoDienThoai(int soDienThoai) {
+    public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
 

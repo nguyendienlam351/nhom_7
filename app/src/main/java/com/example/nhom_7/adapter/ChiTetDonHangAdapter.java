@@ -56,8 +56,8 @@ public class ChiTetDonHangAdapter extends RecyclerView.Adapter<ChiTetDonHangAdap
         holder.tvSanPham.setText(chiTietDH.getTen());
         NumberFormat formatter = new DecimalFormat("#,###,###");
         holder.tvGia.setText(formatter.format(chiTietDH.getGia()) + " đ");
-        holder.tvSoLuong.setText(String.valueOf(chiTietDH.getSize().getSoLuong()));
-        holder.tvSize.setText(chiTietDH.getSize().getTenSize());
+        holder.tvSoLuong.setText(String.valueOf(chiTietDH.getSoLuong()));
+        holder.tvSize.setText(chiTietDH.getSize());
         getAnhMon(chiTietDH.getAnh(),holder.imvSanPham);
     }
     private void getAnhMon(String anh, ImageView imvSanPham) {
