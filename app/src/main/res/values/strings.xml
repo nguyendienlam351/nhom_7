@@ -54,4 +54,30 @@
     <string name="themnhanvien">Thêm nhân viên</string>
 
 
+    <string name="QuanLiDonHang">Quản lí đơn hàng</string>
+    <string name="LichSuDonHang">Lịch sử đơn hàng</string>
+    <string name="SanPham1">Sản phẩm 1</string>
+    <string name="Gia">3.000.000đ</string>
+    <string name="SoLuong">Số lượng:</string>
+    <string name="so3">3</string>
+    <string name="Size">size:</string>
+    <string name="S">S</string>
+    <string name="Ma">Mã</string>
+    <string name="ma">-Mo9MH4UIfhojzoid5EC</string>
+    <string name="NgayDat">Ngày đặt:</string>
+    <string name="Ngaydat">2/7/2021</string>
+    <string name="TrangThai">Trạng thái:</string>
+    <string name="Cho">Chờ</string>
+    <string name="Tong">Tổng:</string>
+    <string name="Huy">Huỷ</string>
+    <string name="DaNhan">Đã nhận</string>
+    <string name="XacNhan">Xác Nhận</string>
+    <string name="Ten">Nguyễn Văn A</string>
+    <string name="HoTen">Họ tên</string>
+    <string name="email">Email:</string>
+    <string name="Email">nguyenvana@gmail.com</string>
+    <string name="SDT">Số điện thoại:</string>
+    <string name="sdt">0877685424</string>
+    <string name="DiaChi">Địa chỉ:</string>
+    <string name="Diachi">Hẻm 48, Bùi Thị Xuân, Quận 5, Tp. Hồ Chí Minh</string>
 </resources>

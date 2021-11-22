@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layout"
+    tools:context=".ChiTietDonHang">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/Ma"/>
+
+        <TextView
+            android:gravity="right"
+            android:layout_weight="8"
+            android:id="@+id/tvMa"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/ma"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/NgayDat"/>
+
+        <TextView
+            android:layout_weight="3"
+            android:id="@+id/tvNgayDat"
+            android:layout_width="0dp"
+            android:gravity="right"
+            style="@style/text"
+            android:text="@string/Ngaydat"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/TrangThai"/>
+
+        <TextView
+            android:layout_weight="3"
+            android:id="@+id/tvTrangthai"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/Cho"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/Tong"/>
+
+        <TextView
+            android:layout_weight="3"
+            android:id="@+id/tvTong"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:textColor="#DD0808"
+            style="@style/text"
+            android:text="@string/Gia"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/HoTen"/>
+
+        <TextView
+            android:layout_weight="7"
+            android:id="@+id/tvHoTen"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/Ten"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/email"/>
+
+        <TextView
+            android:layout_weight="7"
+            android:id="@+id/tvEmail"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/Email"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/SDT"/>
+
+        <TextView
+            android:layout_weight="7"
+            android:id="@+id/tvSDT"
+            android:gravity="right"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/sdt"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/DiaChi"/>
+
+        <TextView
+            android:layout_weight="8"
+            android:id="@+id/tvDiaChi"
+            android:gravity="left"
+            android:layout_width="0dp"
+            style="@style/text"
+            android:text="@string/Diachi"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lvChiTietDH"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/boder"
+        android:layout_weight="1" />
+
+</LinearLayout>

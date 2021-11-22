@@ -46,6 +46,15 @@
             android:name=".GiaoDienQuanLy"
             android:exported="false" />
         <activity
+            android:name=".LichSuDonHang"
+            android:exported="false" />
+        <activity
+            android:name=".ChiTietNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".ChiTietDonHang"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
@@ -53,6 +62,12 @@
             android:exported="false" />
         <activity
             android:name=".TrangTaiKhoan"
+            android:exported="false" />
+        <activity
+            android:name=".QuanLyNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".LichSuDonHangAdmin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
